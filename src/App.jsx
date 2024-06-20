@@ -9,7 +9,11 @@ import Header from './components/nav/Header';
 function App({routes}) {
 
   return (
+    <div>
+    <Header/>
     <Home />
+    </div>
+    
   );
 }
 
