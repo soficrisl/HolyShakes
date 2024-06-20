@@ -9,7 +9,7 @@ import Header from './components/nav/Header';
 function App({routes}) {
 
   return (
-    <Home />
+    <Login/>
   );
 }
 
