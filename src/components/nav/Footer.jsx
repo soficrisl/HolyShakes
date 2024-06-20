@@ -3,6 +3,7 @@ import './Footer.css'
 
 function Footer() {
   return (
+    
     <footer className="w-full bg-yellow-100 dark:bg-zinc-800 p-4 flex flex-col items-center">
       <div className="flex items-center space-x-4">
         <img src="img/unimet.png" alt="Universidad Metropolitana Logo" className="h-12" />

@@ -11,7 +11,6 @@ function App({routes}) {
   return (
     <div>
     <Header/>
-    <Home />
     </div>
     
   );
