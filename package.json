@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "hollyshakes",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "localforage": "^1.10.0",
-    "match-sorter": "^6.3.4",
+    "@headlessui/react": "^2.0.4",
+    "@heroicons/react": "^2.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1",
-    "sort-by": "^0.0.2"
+    "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

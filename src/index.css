@@ -1,9 +1,3 @@
 @tailwind base;
 @tailwind components;
-@tailwind utlities;
-
-
-
-body {
-    font-family: "Montserrat", sans-serif;
-}
+@tailwind utilities;
