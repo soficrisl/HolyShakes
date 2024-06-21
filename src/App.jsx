@@ -5,12 +5,16 @@ import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Mainlogin from "./components/navigation/Mainlogin";
+import Footer from "./components/navigation/Footer";
 
 function App() {
   return (
     <div>
       <Router>
         <Navbar />
+        <Mainlogin />
+        <Footer />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/menu" element={<Menu />} />
