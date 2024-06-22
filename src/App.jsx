@@ -18,6 +18,8 @@ function App() {
           <Route exact path="/register" element={<Register />} />
         </Routes>
       </Router>
+
+
     </div>
   );
 }
