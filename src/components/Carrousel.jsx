@@ -146,7 +146,7 @@ const Carrousel = () => {
               )}
           </Slider>
       </div>
-      <button className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol'> Ver todo el Menu</button>
+      <button className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol hover:bg-orange-50'> Ver todo el Menu</button>
     </div>
 
 

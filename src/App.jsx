@@ -2,12 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
-import Menu from "./pages/Menu";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import LandingSection from './components/navigation/landing/LandingSection';
-import Mainlogin from "./components/navigation/Mainlogin";
-import Footer from "./components/navigation/Footer";
+import Register from "./pages/Register"; 
 
 
 function App() {

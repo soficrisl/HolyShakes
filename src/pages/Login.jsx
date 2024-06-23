@@ -5,9 +5,8 @@ import Navbar from "../components/navigation/Navbar"
 function Login() {
   return (
     <div>
-    Login
     <Navbar />
-    <Mainlogin />
+    <Mainlogin /> 
     <Footer/>
     </div>
   )
