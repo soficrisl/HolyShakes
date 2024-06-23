@@ -6,7 +6,6 @@ import Navbar from './Navbar';
 const Mainlogin = () => {
     return (
       <>
-      <Navbar/> 
       <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-white to-blue-100 dark:from-zinc-800 dark:to-zinc-900">
       <main className="flex flex-col items-center w-full max-w-md p-4">
         <h1 className="text-2xl text-teal-600 dark:text-teal-400 mb-6">INICIAR SESIÓN</h1>
@@ -38,7 +37,6 @@ const Mainlogin = () => {
         <a href="#" className="w-full py-2 mt-2 border border-orange-500 text-orange-500 rounded-md text-center hover:bg-orange-100 dark:border-orange-400 dark:text-orange-400 dark:hover:bg-orange-600">Registrate</a>
         <a href="#" className="w-full py-2 mt-2 border border-orange-500 text-orange-500 rounded-md text-center hover:bg-orange-100 dark:border-orange-400 dark:text-orange-400 dark:hover:bg-orange-600">Ingreso administrador</a>
       </main>
-      <Footer/>
       </div>
       
       
