@@ -1,7 +1,7 @@
 export default function Clients() {
     return (
         <div className=" font-montserrat flex flex-col justify-center items-center w-full">
-            <p className="tracking-widest text-xl self-center">CLIENTES</p>
+            <h2 className='text-center font-bold self tracking-widest text-2xl xl:text-4xl text-orangehs'>CLIENTES</h2>
             <h2 className="font-bold text-4xl self-center  m-4"> Lee lo que dicen otros Holly Shakers </h2>
             <section className="m-4">
                 <div className="flex relative m-7">
@@ -38,7 +38,6 @@ export default function Clients() {
                     </div>
                 </div>
             </section>
-            <button className='mb-12 pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol hover:bg-orange-50'> Enviar Feedback </button>
         </div>
     )
 

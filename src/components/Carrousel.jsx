@@ -126,7 +126,7 @@ const Carrousel = () => {
   return (
     <div> 
       <div className="w-3/4 flex mx-auto m-16 flex-col mb-2 font-montserrat">
-        <h2 className = " text-orangehs self tracking-widest text-center text-3xl font-montserrat font-bold ">PRODUCTOS</h2>
+        <h2 className = " text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-bold ">PRODUCTOS</h2>
         <div className="mt-6">
           <Slider{...settings}>
               {data.map((d) => 

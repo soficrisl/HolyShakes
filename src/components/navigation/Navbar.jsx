@@ -1,19 +1,22 @@
 import logo from '../../assets/logo.png' ;
 import usuario from '../../assets/usuario.png'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <header className="w-full h-12 p-16 flex justify-between items-center bg-creamhs">
+    <header className="w-full h-12 p-16 flex justify-between items-center bg-creamhs font-montserrat text-xs sm:text-sm md:text-lg lg:text-xl">
       <nav className="flex space-x-4">
-        <a href="#" className="text-black dark:text-white">Inicio</a>
-        <a href="#" className="text-black dark:text-white">Menú</a>
-        <a href="#" className="text-black dark:text-white">Conócenos</a>
+        <Link to="/Home" className="text-black">Inicio</Link>
+        <Link to="/Menu" className="text-black">Menú</Link>
+        <Link to="/Conocenos" className="text-black">Conócenos</Link>
       </nav>
-      <img src={ logo } alt="" className="h-28" />
-      <a href="#" className="text-black dark:text-white flex items-center">
+      <Link to="/Home" className="text-black">
+        <img src={ logo } alt="" className="h-28" />
+      </Link>
+      <Link to="/Login" className="text-blackflex items-center flex">
         Iniciar Sesión
         <img src={ usuario } alt="" className="ml-2" />
-      </a>
+      </Link>
     </header>
   );
 };
