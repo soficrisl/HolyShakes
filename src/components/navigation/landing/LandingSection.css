@@ -1,0 +1,63 @@
+.landing-section {
+  width: full;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem; /* Ajuste del padding para mejor proporción */
+  background-color: #b4e4e3; /* Ajuste del color de fondo */
+  border: none; /* Elimina los bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Ajuste del ancho del recuadro */
+  height: 370px; /* Aumento de la altura del recuadro */
+  margin: 0 auto; /* Centra el recuadro */
+}
+
+.text-content {
+  max-width: 40%; /* Ajuste del ancho del texto */
+}
+
+.text-content h1 {
+  font-size: 3rem; /* Aumento del tamaño del texto */
+  margin-bottom: 0.5rem;
+  font-weight: bold; /* Ajuste a negrita */
+}
+
+.text-content p {
+  margin-bottom: 0.5rem; /* Ajuste del margen inferior */
+  font-size: 1.5rem; /* Aumento del tamaño del texto */
+  font-weight: normal; /* Mantener el peso normal */
+}
+
+.text-content button {
+  padding: 0.75rem 1.5rem; /* Aumento del padding del botón */
+  background-color: #fff;
+  border: none;
+  color: #000;
+  font-size: 1.15rem; /* Ajuste del tamaño del texto del botón */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 20px; /* Ajuste a bordes redondeados */
+  font-weight: bold; /* Ajuste a negrita */
+}
+
+.text-content button:hover {
+  background-color: #f0f0f0;
+}
+
+.image-content {
+  max-width: 50%; /* Ajuste del ancho de la sección de imágenes */
+  position: relative;
+  overflow: hidden;
+
+.image-content img {
+  width: 105%; /* Aumento del tamaño de la imagen */
+  height: 105%; /* Aumento del tamaño de la imagen */
+  object-fit: contain; /* Ajuste para que la imagen se ajuste completamente */
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+
+}
+
+.image-content img.active {
+  opacity: 1;
+}

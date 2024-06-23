@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .slick-prev {
   left: -52px !important;
 }
@@ -14,3 +15,4 @@
   color: #000000;
   font-size: 45px;
 }
+

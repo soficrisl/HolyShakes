@@ -2,7 +2,7 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';   
 
 const Carrousel = () => {
   const data = [
@@ -124,29 +124,37 @@ const Carrousel = () => {
   // };
 
   return (
-    <div className="w-3/4 mx-auto">
-    <p>PRODUCTOS</p>
-      <div className="mt-20">
-        <Slider{...settings}>
-            {data.map((d) => 
-            <div key ={d.product} className="p-4">
-                <div className="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <div className="flex justify-center">
-                        <img src={d.image}
-                        alt={d.product} 
-                        className="h-48 w-48 object-cover"
-                        />
-                        </div>
-                        <div className="text-center mt-4">
-                            <p className="text-lg font-semibold">{d.product}</p>
-                        </div>
-                    </div>
-            </div>
-            )}
-        </Slider>
+    <div> 
+      <div className="w-3/4 flex mx-auto m-16 flex-col mb-2 font-montserrat">
+        <h2 className = " text-orangehs self tracking-widest text-center text-3xl font-montserrat font-bold ">PRODUCTOS</h2>
+        <div className="mt-6">
+          <Slider{...settings}>
+              {data.map((d) => 
+              <div key ={d.product} className="p-4">
+                  <div className="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center">
+                      <div className="flex justify-center">
+                          <img src={d.image}
+                          alt={d.product} 
+                          className="h-48 w-48 object-cover"
+                          />
+                          </div>
+                          <div className="text-center mt-4">
+                              <p className="text-lg font-semibold">{d.product}</p>
+                          </div>
+                      </div>
+              </div>
+              )}
+          </Slider>
       </div>
+      <button className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol'> Ver todo el Menu</button>
     </div>
+
+
+    </div>
+    
   );
 };
 
 export default Carrousel;
+
+// hello

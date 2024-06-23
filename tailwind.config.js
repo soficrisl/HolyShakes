@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+
+      colors: {
+        'custom-yellow': '#F4D06F'
+        , 'orangehs': '#ff8811', 
+        'creamhs': '#FFF8F0', 
+      },
+
+      fontFamily: {
+        'montserrat': ['Montserrat', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 }
