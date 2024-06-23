@@ -1,5 +1,5 @@
 import Google from '../../assets/Google.webp' ;
-import Facebook from '../../assets/facebook.png' ;
+import Facebook from '../../assets/Facebook.png' ;
 import Footer from './Footer'
 import Navbar from './Navbar';
 

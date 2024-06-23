@@ -9,7 +9,7 @@ export default function Footer(){
             <img className='w-10 sm:w-12 md:w-20 lg:w-28 xl:w-36 object-cover' src="./src/assets/logocir.png" alt="" />
           </div>
           <div className='flex flex-row items-center justify-between space-x-2 sm:space-x-4 md:space-x-8 lg:space-x-12 sm:pr-8 md:pr-10 lg:pr-15 xl:pr-40'>
-            <img className='w-3 sm:w-5 md:w-6 lg:w-8' src="./src/assets/facebook.png" alt="" />
+            <img className='w-3 sm:w-5 md:w-6 lg:w-8' src="./src/assets/facebookb.png" alt="" />
             <img className='w-6 sm:w-10 md:w-12 lg:w-14' src="./src/assets/twitter.png" alt="" />
             <img className='w-7 sm:w-10 md:w-14 lg:w-20' src="./src/assets/instagram.png" alt="" />
           </div>
