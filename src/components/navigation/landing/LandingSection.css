@@ -3,32 +3,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
-  background-color: #d5eae8;
+  padding: 1.5rem; /* Ajuste del padding para mejor proporción */
+  background-color: #b4e4e3; /* Ajuste del color de fondo */
+  border: none; /* Elimina los bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Ajuste del ancho del recuadro */
+  height: 370px; /* Aumento de la altura del recuadro */
+  margin: 0 auto; /* Centra el recuadro */
 }
 
 .text-content {
-  max-width: 50%;
+  max-width: 40%; /* Ajuste del ancho del texto */
 }
 
 .text-content h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 3rem; /* Aumento del tamaño del texto */
+  margin-bottom: 0.5rem;
+  font-weight: bold; /* Ajuste a negrita */
 }
 
 .text-content p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; /* Ajuste del margen inferior */
+  font-size: 1.5rem; /* Aumento del tamaño del texto */
+  font-weight: normal; /* Mantener el peso normal */
 }
 
 .text-content button {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem; /* Aumento del padding del botón */
   background-color: #fff;
   border: none;
   color: #000;
-  font-size: 1rem;
+  font-size: 1.15rem; /* Ajuste del tamaño del texto del botón */
   cursor: pointer;
   transition: background-color 0.3s;
-  border-radius: 20px;
+  border-radius: 20px; /* Ajuste a bordes redondeados */
+  font-weight: bold; /* Ajuste a negrita */
 }
 
 .text-content button:hover {
@@ -36,21 +45,19 @@
 }
 
 .image-content {
-  max-width: 50%;
+  max-width: 50%; /* Ajuste del ancho de la sección de imágenes */
   position: relative;
   overflow: hidden;
-  height: 300px;
-}
 
 .image-content img {
-  width: 100%;
-  transition: transform 1s ease-in-out;
-  transform: translateX(100%);
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 105%; /* Aumento del tamaño de la imagen */
+  height: 105%; /* Aumento del tamaño de la imagen */
+  object-fit: contain; /* Ajuste para que la imagen se ajuste completamente */
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+
 }
 
-.image-content .slide.active {
-  transform: translateX(0);
+.image-content img.active {
+  opacity: 1;
 }
