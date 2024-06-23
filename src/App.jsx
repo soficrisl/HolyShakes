@@ -25,9 +25,9 @@ function App() {
           <Route exact path="/register" element={<Register />} />
         </Routes>
         <LandingSection /> 
-
+        </div>
       </Router>
-    </div>
+    
 
   );
 }
