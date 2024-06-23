@@ -18,27 +18,19 @@ function LandingSection() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    console.log('Current Image Index:', currentImageIndex);
-    console.log('Current Image:', images[currentImageIndex]);
-  }, [currentImageIndex]);
-
   return (
     <div className="landing-section">
       <div className="text-content">
         <h1>Sabores divinamente irresistibles a tu alcance</h1>
         <p>Servimos comida de verdad</p>
-        <button>Conoce Más</button>
+        <button>CONOCE MÁS</button>
       </div>
       <div className="image-content">
-        {images.map((img, index) => (
-          <img
-            key={index}
-            src={img}
-            alt={`Comida deliciosa ${index + 1}`}
-            className={`slide ${index === currentImageIndex ? "active" : ""}`}
-          />
-        ))}
+        <img
+          src={images[currentImageIndex]}
+          alt={`Comida deliciosa ${currentImageIndex + 1}`}
+          className="active"
+        />
       </div>
     </div>
   );
