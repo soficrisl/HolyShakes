@@ -1,4 +1,5 @@
 .landing-section {
+  width: full;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,8 +48,6 @@
   max-width: 50%; /* Ajuste del ancho de la sección de imágenes */
   position: relative;
   overflow: hidden;
-  height: 100%;
-}
 
 .image-content img {
   width: 105%; /* Aumento del tamaño de la imagen */
@@ -56,6 +55,7 @@
   object-fit: contain; /* Ajuste para que la imagen se ajuste completamente */
   transition: opacity 1s ease-in-out;
   opacity: 0;
+
 }
 
 .image-content img.active {

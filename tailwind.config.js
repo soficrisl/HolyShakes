@@ -8,7 +8,9 @@ export default {
     extend: {
 
       colors: {
-        'custom-yellow': '#F4D06F',
+        'custom-yellow': '#F4D06F'
+        , 'orangehs': '#ff8811', 
+        'creamhs': '#FFF8F0', 
       },
 
       fontFamily: {
