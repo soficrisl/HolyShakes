@@ -1,25 +1,29 @@
 .landing-section {
-  width: full;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem; /* Ajuste del padding para mejor proporción */
   background-color: #b4e4e3; /* Ajuste del color de fondo */
   border: none; /* Elimina los bordes redondeados */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 80%; /* Ajuste del ancho del recuadro */
-  height: 370px; /* Aumento de la altura del recuadro */
+  width: 100%; /* Ajuste del ancho del recuadro */
+  height: 60%; /* Aumento de la altura del recuadro */
   margin: 0 auto; /* Centra el recuadro */
+  font-style: monserrat;
 }
 
 .text-content {
   max-width: 40%; /* Ajuste del ancho del texto */
+  padding: 1% 10%;
+  display: flex;
+  flex-direction: column;
 }
 
 .text-content h1 {
   font-size: 3rem; /* Aumento del tamaño del texto */
   margin-bottom: 0.5rem;
   font-weight: bold; /* Ajuste a negrita */
+  width: 100%;
 }
 
 .text-content p {
@@ -38,6 +42,7 @@
   transition: background-color 0.3s;
   border-radius: 20px; /* Ajuste a bordes redondeados */
   font-weight: bold; /* Ajuste a negrita */
+  align-self: center;
 }
 
 .text-content button:hover {
@@ -45,17 +50,17 @@
 }
 
 .image-content {
-  max-width: 50%; /* Ajuste del ancho de la sección de imágenes */
+  max-width: 100%; /* Ajuste del ancho de la sección de imágenes */
+  max-height: 100%;
   position: relative;
   overflow: hidden;
 }
 .image-content img {
-  width: 105%; /* Aumento del tamaño de la imagen */
-  height: 105%; /* Aumento del tamaño de la imagen */
+  width: 80%; /* Aumento del tamaño de la imagen */
+  height: 80%%; /* Aumento del tamaño de la imagen */
   object-fit: contain; /* Ajuste para que la imagen se ajuste completamente */
   transition: opacity 1s ease-in-out;
   opacity: 0;
-
 }
 
 .image-content img.active {
