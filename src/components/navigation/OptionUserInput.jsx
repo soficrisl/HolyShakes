@@ -11,7 +11,7 @@ export default function TextUserInput({ options, labeltext, id}) {
           name={id}
           className="mt-2 p-2 border rounded bg-slate-100 w-40 lg:w-60 xl:w-80"
         >
-          <option value="">Select...</option>
+          <option value="">Opciones</option>
           {options.map((option, index) => (
             <option key={index} value={option.value}>{option.label}</option>
           ))}
