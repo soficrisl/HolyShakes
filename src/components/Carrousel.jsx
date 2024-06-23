@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -37,8 +38,16 @@ const Carrousel = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    previousArrow: <PreviousArrow />,
+    nextArrow: (
+      <div>
+        <div className="next-slick-arrow"> ⫸ </div>
+      </div>
+    ),
+    prevArrow: (
+      <div>
+        <div className="prev-slick-arrow"> ⫷ </div>
+      </div>
+    ),
     responsive: [
         {
             breakpoint: 1024,
@@ -59,45 +68,60 @@ const Carrousel = () => {
     ]
   };
 
-  // Flecha para seguir hacia la derecha en el carrusel
-  function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} slick-arrow slick-next`}
-        style={{ ...style, display: 'block', background: '#000000', borderRadius: '50%', width: '40px', height: '40px', zIndex: 1 }}
-        onClick={onClick}
-      >
-        <span style={{ color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>&#10095;</span>
-      </div>
-    );
-  }
+  // // Flecha para seguir hacia la derecha en el carrusel
+  // function NextArrow(props) {
+  //   const { className, style, onClick } = props;
+  
+  //   return (
+  //     <button
+  //       className={`p-2 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 ${className}`}
+  //       style={{ ...style }}
+  //       onClick={onClick}
+  //     >
+  //       <svg
+  //         className="h-6 w-6 text-gray-700"
+  //         viewBox="0 0 24 24"
+  //         fill="none"
+  //         xmlns="http://www.w3.org/2000/svg"
+  //       >
+  //         <path
+  //           d="M9 8L15 12L9 16"
+  //           stroke="currentColor"
+  //           strokeWidth="2"
+  //           strokeLinecap="round"
+  //           strokeLinejoin="round"
+  //         />
+  //       </svg>
+  //     </button>
+  //   );
+  // }
+  
+  
+  
 
-  NextArrow.propTypes = {
-    className: PropTypes.string,
-    style: PropTypes.object,
-    onClick: PropTypes.func,
-  };
+  // NextArrow.propTypes = {
+  //   className: PropTypes.string,
+  //   style: PropTypes.object,
+  //   onClick: PropTypes.func,
+  // };
 
-   // Flecha para ir hacia la izquierda en el carrusel
-  function PreviousArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} slick-arrow slick-next`}
-        style={{ ...style, display: 'block', background: '#000000', borderRadius: '50%', width: '40px', height: '40px', zIndex: 1 }}
-        onClick={onClick}
-      >
-        <span style={{ color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>&#10095;</span>
-      </div>
-    );
-  }
+  //  // Flecha para ir hacia la izquierda en el carrusel
+  // function PreviousArrow(props) {
+  //   const { className, style, onClick } = props;
+  //   return (
+  //     <div
+  //       className={className}
+  //       style={{ ...style, display: "block", background: "black" }}
+  //       onClick={onClick}
+  //     />
+  //   );
+  // }
 
-  PreviousArrow.propTypes = {
-    className: PropTypes.string,
-    style: PropTypes.object,
-    onClick: PropTypes.func,
-  };
+  // PreviousArrow.propTypes = {
+  //   className: PropTypes.string,
+  //   style: PropTypes.object,
+  //   onClick: PropTypes.func,
+  // };
 
   return (
     <div> 
