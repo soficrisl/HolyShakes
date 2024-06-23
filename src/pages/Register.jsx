@@ -1,15 +1,16 @@
 import Navbar from "../components/navigation/Navbar"; 
 import Footer from "../components/navigation/Footer";
 import Google from "../assets/Google.webp"; 
+import image from "../assets/landing/image.png"
 
 
 function Register() {
   return (
     <>
     <Navbar/>
-    <div className="flex place-content-evenly flex-col items-center gap-4 bg-creamhs"> 
+    <div className="flex place-content-evenly flex-col items-center gap-4 w-full h-full bg-cover" style ={{backgroundImage: `url('${image}')`}}> 
     <h2 className = "text-center text-4xl p-8 mt-4 uppercase tracking-widest text-orangehs"> Registrate </h2>
-    <div className="  m-6 mt-0 pl-36 pr-36 pt-4 pb-4 self-center border bg-slate-50 rounded -md shadow-lg backdrop-filter backdrop-blur-sm relative bg-opacity-50 flex flex-col "> 
+    <div className="  m-6 mt-0 pl-36 pr-36 pt-4 pb-4 self-center border bg-slate-50 rounded -md shadow-lg backdrop-filter backdrop-blur-sm relative bg-opacity-10 flex flex-col "> 
             <div className="content-center align-middle font-montserrat"> 
                 <div className="p-1 m-1 mb-2 w-72 flex flex-col gap-4"> 
                     <div>

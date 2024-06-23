@@ -8,7 +8,7 @@ import image from "../assets/landing/image.png"
 function Home() {
   return (
     <>
-      <div className=" w-full h-full bg-cover" style ={{backgroundImage: `url(${image.src})`}}>
+      <div className=" w-full h-full bg-cover" style ={{backgroundImage: `url('${image}')`}}>
           <Navbar/>
           <Landing/>
           <Carrousel/>
