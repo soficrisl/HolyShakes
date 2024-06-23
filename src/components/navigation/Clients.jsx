@@ -1,9 +1,9 @@
 export default function Clients() {
     return (
-        <div className="font-montserrat flex flex-col justify-center items-center bg-yellow-50">
-            <p>CLIENTES</p>
-            <h2 className="font-bold"> Lee lo que dicen otros Holly Shakers </h2>
-            <section className="">
+        <div className=" font-montserrat flex flex-col justify-center items-center w-full">
+            <p className="tracking-widest text-xl self-center">CLIENTES</p>
+            <h2 className="font-bold text-4xl self-center  m-4"> Lee lo que dicen otros Holly Shakers </h2>
+            <section className="m-4">
                 <div className="flex relative m-7">
                     <img className="w-32 relative bottom-8 left-12" src="../src/assets/Camila.png" alt="" />
                     <div>

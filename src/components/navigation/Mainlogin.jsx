@@ -1,5 +1,5 @@
 import Google from '../../assets/Google.webp' ;
-import Facebook from '../../assets/Facebook.png' ;
+import Facebook from '../../assets/facebook.png' ;
 
 const Mainlogin = () => {
     return (

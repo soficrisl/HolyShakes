@@ -1,11 +1,10 @@
 .landing-section {
+  width: full;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
   background-color: #d5eae8;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .text-content {
@@ -40,7 +39,7 @@
   max-width: 50%;
   position: relative;
   overflow: hidden;
-  height: 300px; 
+  height: 300px;
 }
 
 .image-content img {
@@ -48,7 +47,7 @@
   transition: transform 1s ease-in-out;
   transform: translateX(100%);
   position: absolute;
-  top: 0; 
+  top: 0;
   left: 0;
 }
 
