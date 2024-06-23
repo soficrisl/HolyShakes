@@ -7,6 +7,8 @@ import Menu from "./pages/Menu";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LandingSection from './components/navigation/landing/LandingSection';
+import Mainlogin from "./components/navigation/Mainlogin";
+import Footer from "./components/navigation/Footer";
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
+        <Mainlogin />
+        <Footer />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/menu" element={<Menu />} />
@@ -21,8 +25,10 @@ function App() {
           <Route exact path="/register" element={<Register />} />
         </Routes>
         <LandingSection /> 
-      </div>
-    </Router>
+
+      </Router>
+    </div>
+
   );
 }
 
