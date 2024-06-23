@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home";
+import Feedback from "./pages/Feedback";
 import Menu from "./pages/Menu";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Home/>
+        <Feedback/>
         {/*<Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/menu" element={<Menu />} />

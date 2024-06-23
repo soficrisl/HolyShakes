@@ -48,7 +48,7 @@
   max-width: 50%; /* Ajuste del ancho de la sección de imágenes */
   position: relative;
   overflow: hidden;
-
+}
 .image-content img {
   width: 105%; /* Aumento del tamaño de la imagen */
   height: 105%; /* Aumento del tamaño de la imagen */
