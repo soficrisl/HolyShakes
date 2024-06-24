@@ -49,11 +49,11 @@ function Register() {
                     </div>
                     <div> 
                         < div className="block text-sm font-bold text-zinc-700 dark:text-zinc-300">  Contraseña </div>
-                        <input id ="password"  className= 'mt-1 block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white' placeholder="Enter password"/> 
+                        <input type= "password" id ="password"  className= 'mt-1 block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white' placeholder="Enter password"/> 
                     </div>
                     <div> 
                         <div className="block text-sm font-bold text-zinc-700 dark:text-zinc-300">  Confirmar Contraseña </div>
-                        <input id ="checkpassword" className= 'mt-1 block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white' placeholder="Enter same password" /> 
+                        <input type= "password" id ="checkpassword" className= 'mt-1 block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white' placeholder="Enter same password" /> 
                     </div>
                     <button className ="w-full py-2 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-600"> Registrar</button>
                     <button className ="w-full py-2 bg-white text-black border border-zinc-300 rounded-md shadow-sm flex items-center justify-center hover:bg-zinc-100 dark:bg-zinc-700 dark:text-white dark:border-zinc-600 dark:hover:bg-zinc-600">
