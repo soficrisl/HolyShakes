@@ -4,7 +4,7 @@ import usuario from "../../assets/usuario.png";
 import { Link } from "react-router-dom";
 import appFirebase from "../../credentials";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -15,6 +15,7 @@ import {
   Cog6ToothIcon,
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
+import {useRef} from "react"; 
 
 const auth = getAuth(appFirebase);
 
@@ -39,10 +40,54 @@ const Navbar = () => {
     return classes.filter(Boolean).join(" ");
   }
 
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
+  const [touched, navBarOpen] = useState(false); 
+  const navBarOpening = () => {
+    touched ? navBarOpen(false) :navBarOpen(true)
+  }
+
   return (
+    <> 
+      <header className= "bg-creamhs w-full"> 
+        <nav className = "flex justify-between items-center w-[92%] mx-auto" >
+          <div> 
+            <img  className = "w-16" src = {logo} alt = "..."/>
+          </div>
+          <div className = {`nav-links md:static absolute bg-creamhs py-6 md:min-h-fit min-h-[60v] left-0 ${touched ? 'top-[9%]': 'top-[-100%]'}  md:w-auto w-full flex items-center px-51`}> 
+            <ul className = "flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 ml-4"> 
+              <li> 
+              <Link to="/" className="text-black dark:text-white hover:text-gray-500"> Inicio</Link>
+              </li>
+              <li> 
+              <Link to="/menu" className="text-black dark:text-white hover:text-gray-500"> Menú</Link>
+              </li>
+              <li> 
+              <Link to="/aboutus" className="text-black dark:text-white  hover:text-gray-500">  Conócenos</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="flex items-center gap-6"> 
+          <Link to="/login" className="text-black dark:text-white hover:text-gray-500 ">Iniciar Sesión</Link>
+          <button className="text-2xl md:hidden" onClick={navBarOpening}> 
+              <ion-icon name="menu"></ion-icon>
+          </button>
+          </div>
+        </nav>
+
+      </header>
+    
+    </>
+
+);
+};
+
+
+    {/*
     <header className="w-full h-12 p-16 flex justify-between items-center bg-creamhs font-montserrat text-xs sm:text-sm md:text-lg lg:text-xl">
       <nav className="flex space-x-4">
-
         <Link to="/" className="text-black dark:text-white">
           Inicio
         </Link>
@@ -132,7 +177,7 @@ const Navbar = () => {
         )}
       </div>
     </header>
-  );
-};
+    */}
+
 
 export default Navbar;
