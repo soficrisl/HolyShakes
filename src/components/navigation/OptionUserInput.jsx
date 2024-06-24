@@ -9,7 +9,7 @@ export default function TextUserInput({ options, labeltext, id}) {
         <select
           id={id}
           name={id}
-          className="mt-2 p-2 border rounded bg-slate-100 w-40 lg:w-60 xl:w-80"
+          className="mt-2 p-2 border rounded bg-white w-40 lg:w-60 xl:w-80"
         >
           <option value="">Opciones</option>
           {options.map((option, index) => (
