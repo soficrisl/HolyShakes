@@ -8,7 +8,7 @@ export default function Feedback() {
     return(
         <>
         <Navbar></Navbar>
-        <main className='bg-creamhs p-2 xl:p-8 font-montserrat  text-xs xl:text-lg'>
+        <main className='bg-gradient-circle p-2 xl:p-8 font-montserrat  text-xs xl:text-lg'>
             <h2 className='text-center text-2xl xl:text-4xl font-bold text-orangehs'>Feedback</h2>
             <OptionUserInput options={[
                 { value: '1', label: '1' },

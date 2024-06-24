@@ -1,5 +1,5 @@
 
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logocir.png";
 import usuario from "../../assets/usuario.png";
 import { Link } from "react-router-dom";
 import appFirebase from "../../credentials";
@@ -53,7 +53,7 @@ const Navbar = () => {
           Conócenos
         </Link>
       </nav>
-      <img src={logo} alt="" className="h-28" />
+      <img src={logo} alt="" className="h-28 mr-24" />
       <div>
         {usuario ? (
           <>
