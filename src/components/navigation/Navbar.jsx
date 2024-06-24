@@ -1,3 +1,4 @@
+
 import logo from "../../assets/logo.png";
 import usuario from "../../assets/usuario.png";
 import { Link } from "react-router-dom";
@@ -16,6 +17,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const auth = getAuth(appFirebase);
+
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -38,8 +40,9 @@ const Navbar = () => {
   }
 
   return (
-    <header className="w-full h-12 p-16 flex justify-between items-center bg-creamhs">
+    <header className="w-full h-12 p-16 flex justify-between items-center bg-creamhs font-montserrat text-xs sm:text-sm md:text-lg lg:text-xl">
       <nav className="flex space-x-4">
+
         <Link to="/" className="text-black dark:text-white">
           Inicio
         </Link>

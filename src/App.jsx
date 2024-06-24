@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Feedback from "./pages/Feedback";
+import Login from "./pages/Login";
+import Menu from "./pages/Menu";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -23,6 +25,7 @@ function App() {
   })
 
   return (
+
     <Router>
       <div className="App">
         <Routes>

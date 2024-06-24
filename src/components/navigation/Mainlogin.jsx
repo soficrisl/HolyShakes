@@ -17,7 +17,7 @@ const Mainlogin = () => {
       signInWithEmailAndPassword(auth, email, password);
     }
     return (
-      <>
+      <> 
       <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-white to-blue-100 dark:from-zinc-800 dark:to-zinc-900">
       <main className="flex flex-col items-center w-full max-w-md p-4">
         <h1 className="text-2xl text-teal-600 dark:text-teal-400 mb-6">INICIAR SESIÓN</h1>
