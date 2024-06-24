@@ -5,7 +5,7 @@ import Feedback from "../../pages/Feedback";
 export default function Footer(){
   return (
       <>
-      <div className='bg-custom-yellow w-full p-4 sm:p-2 md:p-4 lg:p-6 xl:p-6 space-y-4  sm:space-y-4 md:space-y-4 lg:space-y-6 text-xs sm:text-sm md:text-lg lg:text-xl font-montserrat'>
+      <div className='bg-custom-yellow w-full p-4 sm:p-2 md:p-4 lg:p-6 xl:p-6 space-y-4  sm:space-y-4 md:space-y-4 lg:space-y-6 text-xs sm:text-sm md:text-lg lg:text-xl font-montserrat mb-auto'>
         <div className='flex flex-row items-center justify-between '>
           <div className='flex sm:space-x-2 md:space-x-3 lg:space-x-4 justify-center items-center' >
             <img className='w-20 sm:w-40 md:w-50 xl:w-60 object-cover'  src="./src/assets/universidad.png" alt="" />

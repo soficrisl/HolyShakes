@@ -56,7 +56,7 @@ const Navbar = () => {
           <div> 
             <img  className = "w-16" src = {logo} alt = "..."/>
           </div>
-          <div className = {`nav-links md:static absolute bg-creamhs py-6 md:min-h-fit min-h-[60v] left-0 ${touched ? 'top-[9%]': 'top-[-100%]'}  md:w-auto w-full flex items-center px-51`}> 
+          <div className = {`nav-links md:static absolute bg-creamhs py-6 md:min-h-fit min-h-[60v] left-0 ${touched ? 'top-[9%] z-50': 'top-[-100%] z-0'}  md:w-auto w-full flex items-center px-51`}> 
             <ul className = "flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 ml-4"> 
               <li> 
               <Link to="/" className="text-black dark:text-white hover:text-gray-500"> Inicio</Link>
@@ -70,10 +70,77 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-6"> 
-          <Link to="/login" className="text-black dark:text-white hover:text-gray-500 ">Iniciar Sesión</Link>
-          <button className="text-2xl md:hidden" onClick={navBarOpening}> 
-              <ion-icon name="menu"></ion-icon>
-          </button>
+        {usuario ? (
+          <>
+            <Menu
+              as="div"
+              className="hidden pt-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
+            >
+              <div>
+                <Menu.Button>
+                  <UserCircleIcon className="h-8" />
+                </Menu.Button>
+              </div>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-16 z-10 mt-2 w-40 divide-y divide-gray-200 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          href="/profile"
+                          className={classNames(
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700",
+                            "block px-4 py-2 text-sm"
+                          )}
+                        >
+                          <div className="flex inline-flex gap-x-2">
+                            <UserIcon className="h-5" /> Perfil
+                          </div>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </div>
+                  <div className="py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          onClick={() => signOut(auth)}
+                          className={classNames(
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700",
+                            "block px-4 py-2 text-sm"
+                          )}
+                        >
+                          <div className="flex inline-flex gap-x-2">
+                            <ArrowRightStartOnRectangleIcon className="h-5" />{" "}
+                            Cerrar Sesión
+                          </div>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="text-black dark:text-white hover:text-gray-500 ">Iniciar Sesión</Link>
+            <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
+          </>
+        )}
           </div>
         </nav>
 
@@ -167,12 +234,8 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link
-              to="/login"
-              className="text-black dark:text-white flex items-center"
-            >
-              Iniciar Sesión
-            </Link>
+            <Link to="/login" className="text-black dark:text-white hover:text-gray-500 ">Iniciar Sesión</Link>
+            <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
           </>
         )}
       </div>
