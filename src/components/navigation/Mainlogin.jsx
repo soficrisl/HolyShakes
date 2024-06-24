@@ -1,5 +1,5 @@
 import Google from '../../assets/Google.webp';
-import Facebook from '../../assets/facebook.png';
+import Facebook from '../../assets/Facebook.png';
 import { Link } from 'react-router-dom';
 import appFirebase from "../../credentials";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
