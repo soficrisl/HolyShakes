@@ -19,7 +19,7 @@ export default function TextUserInput(props) {
           type="text"
           value={userInput}
           onChange={handleInputChange}
-          className="mt-2 p-2 border rounded bg-slate-100 w-40 lg:w-60 lg:h-28 xl:w-80 xl:h-40"
+          className="mt-2 p-2 border rounded bg-slate-100 w-40 h-10 md:w-60 md:h-24 lg:w-80 lg:h-28 xl:w-80 xl:h-40 "
           placeholder={props.place_holder}
         />
       </div>

@@ -14,8 +14,8 @@ export default function Footer(){
             </Link>
           </div>
           <div className='flex flex-row items-center justify-between space-x-2 sm:space-x-4 md:space-x-8 lg:space-x-12 sm:pr-8 md:pr-10 lg:pr-15 xl:pr-40'>
-            <img className='w-3 sm:w-5 md:w-6 lg:w-7' src="./src/assets/facebookb.png" alt="" />
-            <img className='w-6 sm:w-8 md:w-12 lg:w-12' src="./src/assets/twitter.png" alt="" />
+            <img className='w-3 sm:w-4 md:w-6 lg:w-7' src="./src/assets/facebookb.png" alt="" />
+            <img className='w-6 sm:w-7 md:w-10 lg:w-12' src="./src/assets/twitter.png" alt="" />
             <a href="https://www.instagram.com/hollyshakesvzla" target="_blank" rel="noopener noreferrer">
               <img className='w-7 sm:w-8 md:w-14 lg:w-18' src="./src/assets/instagram.png" alt="" />
             </a>
