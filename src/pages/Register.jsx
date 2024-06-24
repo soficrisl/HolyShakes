@@ -25,9 +25,11 @@ const funcCreate = async(e) =>{
 function Register() {
   return (
     <>
+    <div className = "bg-gradient-circle flex-col"> 
     <Navbar/>
-    <div className="flex place-content-evenly flex-col items-center gap-4 w-full h-full bg-gradient-circle "> 
-    <h2 className = "text-center text-4xl mt-4 uppercase tracking-widest text-orangehs"> Registrate </h2>
+    <div className="flex place-content-evenly flex-col items-center gap-4 w-screen"> 
+    <div className="my-6">
+    <h2 className = "text-center text-4xl mb-4 uppercase tracking-widest text-orangehs"> Registrate </h2>
     <div className="  m-6 mt-0 pl-36 pr-36 pt-4 pb-4 self-center border bg-slate-50 rounded -md shadow-lg backdrop-filter backdrop-blur-sm relative bg-opacity-10 flex flex-col "> 
             <div className="content-center align-middle font-montserrat"> 
                 <form className="p-1 m-1 mb-2 w-72 flex flex-col gap-4" onSubmit={funcCreate}> 
@@ -65,8 +67,10 @@ function Register() {
                 </form>
             </div>
         </div>
+        </div>
     </div>
-    <Footer/>
+    <Footer className= ""/>
+    </div>
     </>
     
 )
