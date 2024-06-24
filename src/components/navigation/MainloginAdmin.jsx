@@ -18,7 +18,7 @@ const Mainlogin = () => {
         <>
             <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b font-montserrat">
                 <main className="flex flex-col items-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl p-4 my-20">
-                    <h1 className="text-2xl text-teal-600 dark:text-teal-400 mb-6 self-center">INICIAR SESIÓN ADMINISTRADOR</h1>
+                    <h1 className="text-2xl text-teal-600 dark:text-teal-400 mb-6 self-center text-center">INICIAR SESIÓN ADMINISTRADOR</h1>
                     <form className="w-full space-y-4" onSubmit={funcAutentication}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Correo</label>
