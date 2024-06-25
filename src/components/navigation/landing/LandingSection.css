@@ -9,7 +9,7 @@
   width: 100%; /* Ajuste del ancho del recuadro */
   height: 60%; /* Aumento de la altura del recuadro */
   margin: 0 auto; /* Centra el recuadro */
-  font-style: monserrat;
+  font-style: "Montserrat", sans-serif;
 }
 
 .text-content {
@@ -65,4 +65,75 @@
 
 .image-content img.active {
   opacity: 1;
+}
+
+/* Para que sea responsive */
+
+/* Pantallas pequeñas */
+@media (max-width: 600px) {
+  .landing-section {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+
+  .text-content {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .image-content img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Pantallas medianas */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .landing-section {
+    padding: 1rem;
+  }
+
+  .text-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .text-content p {
+    font-size: 1.25rem;
+  }
+
+  .text-content button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .image-content img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1025px) {
+  .landing-section {
+    padding: 2rem;
+  }
+
+  .text-content h1 {
+    font-size: 3.5rem;
+  }
+
+  .text-content p {
+    font-size: 1.75rem;
+  }
+
+  .text-content button {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+  }
+
+  .image-content img {
+    width: 80%;
+    height: auto;
+  }
 }
