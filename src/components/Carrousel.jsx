@@ -2,33 +2,39 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import PropTypes from 'prop-types';   
+import PropTypes from 'prop-types'; 
+import swimagen from "../assets/carrousel_images/egg_sandwich.png";   
+import milkshakeimagen from "../assets/carrousel_images/milkshake.png";  
+import cake from "../assets/carrousel_images/choc_cake.png" ;
+import pernil from "../assets/carrousel_images/sandwich.png" ;
+import waffles from "../assets/carrousel_images/waffles.png";
+import empanadas from "../assets/carrousel_images/empanaditas.png"
 
 const Carrousel = () => {
   const data = [
     {
       product: 'Sandwich de Huevo',
-      image: '../src/assets/carrousel_images/egg_sandwich.png'
+      image: swimagen
     },
     {
       product: 'PB Milkshake',
-      image: '../src/assets/carrousel_images/milkshake.png'
+      image: milkshakeimagen
     },
     {
       product: 'Torta de Nutella',
-      image: '../src/assets/carrousel_images/choc_cake.png'
+      image: cake
     },
     {
       product: 'Sandwich de Pernil',
-      image: '../src/assets/carrousel_images/sandwich.png'
+      image: pernil
     },
     {
       product: 'Waffles',
-      image: '../src/assets/carrousel_images/waffles.png'
+      image: waffles
     },
     {
       product: 'Empanaditas',
-      image: '../src/assets/carrousel_images/empanaditas.png'
+      image: empanadas
     },
   ];
 
@@ -126,7 +132,7 @@ const Carrousel = () => {
   return (
     <div> 
       <div className="w-3/4 flex mx-auto m-16 flex-col mb-2 font-montserrat">
-        <h2 className = " text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-bold ">PRODUCTOS</h2>
+        <h2 className = " text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold ">PRODUCTOS</h2>
         <div className="mt-6">
           <Slider{...settings}>
               {data.map((d) => 
@@ -146,7 +152,9 @@ const Carrousel = () => {
               )}
           </Slider>
       </div>
-      <button className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol hover:bg-orange-50'> Ver todo el Menu</button>
+      <button 
+      className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol hover:bg-orange-50'
+      style= {{fontFamily: "'Open Sans' , sans-serif", fontWeight: 'bold'}}> Ver todo el Menú</button>
     </div>
 
 
