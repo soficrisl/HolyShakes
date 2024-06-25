@@ -9,7 +9,7 @@
   width: 100%; /* Ajuste del ancho del recuadro */
   height: 60%; /* Aumento de la altura del recuadro */
   margin: 0 auto; /* Centra el recuadro */
-  font-style: monserrat;
+  font-family: "Montserrat", sans-serif;
 }
 
 .text-content {
@@ -21,15 +21,20 @@
 
 .text-content h1 {
   font-size: 3rem; /* Aumento del tamaño del texto */
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   font-weight: bold; /* Ajuste a negrita */
-  width: 100%;
+  width: 400px;
+  line-height: 1.06;
+  letter-spacing: 0.1rem;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .text-content p {
-  margin-bottom: 0.5rem; /* Ajuste del margen inferior */
+  margin-bottom: 1rem; /* Ajuste del margen inferior */
   font-size: 1.5rem; /* Aumento del tamaño del texto */
-  font-weight: normal; /* Mantener el peso normal */
+  font-weight: light; /* Mantener el peso normal */
+  font-family: Montserrat, sans-serif;
 }
 
 .text-content button {
@@ -40,7 +45,7 @@
   font-size: 1.15rem; /* Ajuste del tamaño del texto del botón */
   cursor: pointer;
   transition: background-color 0.3s;
-  border-radius: 20px; /* Ajuste a bordes redondeados */
+  border-radius: 83px; /* Ajuste a bordes redondeados */
   font-weight: bold; /* Ajuste a negrita */
   align-self: center;
 }
@@ -65,4 +70,84 @@
 
 .image-content img.active {
   opacity: 1;
+}
+
+/* Para que sea responsive */
+
+/* Pantallas pequeñas */
+@media (max-width: 600px) {
+  .landing-section {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .text-content {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .text-content h1 {
+    font-size: 2.5rem;
+    width: 80px;
+  }
+
+  .image-content img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Pantallas medianas */
+@media (min-width: 811px) and (max-width: 1024px) {
+  .landing-section {
+    padding: 1rem;
+  }
+
+  .text-content h1 {
+    font-size: 2.5rem;
+    width: 150px;
+  }
+
+  .text-content p {
+    font-size: 1.25rem;
+  }
+
+  .text-content button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .image-content img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1025px) {
+  .landing-section {
+    padding: 2rem;
+    flex-direction: row;
+  }
+
+  .text-content h1 {
+    font-size: 3rem;
+    width: 400px;
+  }
+
+  .text-content p {
+    font-size: 1.75rem;
+  }
+
+  .text-content button {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+  }
+
+  .image-content img {
+    width: 80%;
+    height: auto;
+  }
 }

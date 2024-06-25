@@ -25,6 +25,7 @@ const Mainlogin = () => {
     signInWithPopup(auth, provider);
   };
 
+
   const funcAutentication = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;

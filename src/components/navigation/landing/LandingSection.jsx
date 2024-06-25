@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./LandingSection.css";
 import img1 from '../../../assets/landing/frame13.jpg';
