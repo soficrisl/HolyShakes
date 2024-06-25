@@ -1,7 +1,7 @@
 import Caption from "./Caption"
-import camila from "../src/assets/Camila.png";
-import profe from "../src/assets/Franklin.png"; 
-import cris from "../src/assets/Cristian.png";
+import camila from "../../assets/Camila.png";
+import profe from "../../assets/Franklin.png"; 
+import cris from "../../assets/Cristian.png";
 
 
 export default function Clients() {
