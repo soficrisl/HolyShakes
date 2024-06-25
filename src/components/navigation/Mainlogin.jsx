@@ -96,14 +96,16 @@ const Mainlogin = () => {
             <span className="mx-4 text-zinc-500 dark:text-zinc-400">o</span>
             <div className="flex-grow border-t border-zinc-300 dark:border-zinc-600"></div>
           </div>
+
           <p className="text-center text-zinc-700 dark:text-zinc-300">
-            Eres nuevo a Holly Shakes?
+          ¿Eres nuevo a Holly Shakes?
           </p>
+          
           <Link
             to="/register"
             className="w-full py-2 mt-2 border border-orange-500 text-orange-500 rounded-md text-center hover:bg-orange-100 dark:border-orange-400 dark:text-orange-400 dark:hover:bg-orange-600"
           >
-            Registrate
+            Regístrate
           </Link>
           <div className="my-6 w-full flex items-center">
             <div className="flex-grow border-t border-zinc-300 dark:border-zinc-600"></div>

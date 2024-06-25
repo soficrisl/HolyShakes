@@ -51,7 +51,7 @@ function Register() {
       <div className="flex place-content-evenly flex-col items-center gap-4 w-full h-full bg-gradient-circle ">
         <h2 className="text-center text-4xl mt-4 uppercase tracking-widest text-orangehs">
           {" "}
-          Registrate{" "}
+          Regístrate{" "}
         </h2>
         <div className="  m-6 mt-0 pl-36 pr-36 pt-4 pb-4 self-center border bg-slate-50 rounded -md shadow-lg backdrop-filter backdrop-blur-sm relative bg-opacity-10 flex flex-col ">
           <div className="content-center align-middle font-montserrat">
@@ -84,7 +84,7 @@ function Register() {
               <div>
                 <div className="block text-sm font-bold text-zinc-700 dark:text-zinc-300">
                   {" "}
-                  Telefono{" "}
+                  Teléfono{" "}
                 </div>
                 <input
                   id="phone"
