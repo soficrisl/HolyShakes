@@ -8,7 +8,7 @@ import milkshakeimagen from "../assets/carrousel_images/milkshake.png";
 import cake from "../assets/carrousel_images/choc_cake.png" ;
 import pernil from "../assets/carrousel_images/sandwich.png" ;
 import waffles from "../assets/carrousel_images/waffles.png";
-import empanadas from "../src/assets/carrousel_images/empanaditas.png"
+import empanadas from "../assets/carrousel_images/empanaditas.png"
 
 const Carrousel = () => {
   const data = [
