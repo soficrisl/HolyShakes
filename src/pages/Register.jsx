@@ -3,13 +3,19 @@ import Footer from "../components/navigation/Footer";
 import Google from "../assets/Google.webp";
 import image from "../assets/landing/image.png";
 import appFirebase from "../credentials";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, collection, setDoc } from "firebase/firestore";
 import "../styles.css";
 const auth = getAuth(appFirebase);
 
 function Register() {
   const firestore = getFirestore(appFirebase);
+
+  const googleAutentication = async() => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+  }
+
   const funcCreate = async (e) => {
     e.preventDefault();
 
@@ -126,7 +132,7 @@ function Register() {
                 {" "}
                 Registrar
               </button>
-              <button className="w-full py-2 bg-white text-black border border-zinc-300 rounded-md shadow-sm flex items-center justify-center hover:bg-zinc-100 dark:bg-zinc-700 dark:text-white dark:border-zinc-600 dark:hover:bg-zinc-600">
+              <button onClick={googleAutentication} className="w-full py-2 bg-white text-black border border-zinc-300 rounded-md shadow-sm flex items-center justify-center hover:bg-zinc-100 dark:bg-zinc-700 dark:text-white dark:border-zinc-600 dark:hover:bg-zinc-600">
                 <div className="flex place-content-evenly">
                   <img src={Google} alt="Google Icon" className="mr-2" />
                   Continuar con Google
