@@ -24,9 +24,9 @@ const funcCreate = async(e) =>{
 
   function Register() {
     return (
-        <div className= "min-h-screen flex-col">
+        <div className= "flex-col">
             <Navbar />
-            <div className="flex place-content-evenly flex-col items-center gap-4 w-full h-full bg-gradient-circle ">
+            <div className="flex place-content-evenly h-screen flex-grow flex-col items-center gap-4 w-full bg-gradient-circle ">
                 <h2 className="text-center text-4xl mt-4 uppercase tracking-widest text-orangehs">Registrate</h2>
                 <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-6 mt-0 p-6 bg-white dark:bg-gray-800 rounded-md shadow-lg backdrop-filter backdrop-blur-sm flex flex-col">
                     <form className="w-full space-y-4" onSubmit={funcCreate}>
