@@ -4,11 +4,16 @@ import Footer from './Footer'
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 import appFirebase from "../../credentials";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 
 const auth = getAuth(appFirebase)
 
 const Mainlogin = () => {
+
+    const googleAutentication = async() => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+    }
 
     const funcAutentication = async(e) =>{
       e.preventDefault();
@@ -31,7 +36,7 @@ const Mainlogin = () => {
             <input type="password" id="password" placeholder="Ingresa tu contraseña" className="mt-1 block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" />
           </div>
           <button type="submit" className="w-full py-2 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-600">Ingresar</button>
-          <button type="button" className="w-full py-2 bg-white text-black border border-zinc-300 rounded-md shadow-sm flex items-center justify-center hover:bg-zinc-100 dark:bg-zinc-700 dark:text-white dark:border-zinc-600 dark:hover:bg-zinc-600">
+          <button onClick={googleAutentication} type="button" className="w-full py-2 bg-white text-black border border-zinc-300 rounded-md shadow-sm flex items-center justify-center hover:bg-zinc-100 dark:bg-zinc-700 dark:text-white dark:border-zinc-600 dark:hover:bg-zinc-600">
             <img src={ Google } alt="Google Icon" className="mr-2" />
             Continuar con Google
           </button>
