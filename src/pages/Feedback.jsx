@@ -22,7 +22,7 @@ export default function Feedback() {
                 { value: '9', label: '9' },
                 { value: '10', label: '10' }
 
-            ]} labeltext="Puntua nuestra página web " id="puntuacion"></OptionUserInput>
+            ]} labeltext="Puntúa nuestra página web " id="puntuacion"></OptionUserInput>
             <OptionUserInput options={[
                 { value: '1', label: 'Recomendación' },
                 { value: '2', label: 'Reclamo' },
