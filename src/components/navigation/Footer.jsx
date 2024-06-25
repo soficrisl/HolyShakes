@@ -9,7 +9,7 @@ export default function Footer(){
         <div className='flex flex-row items-center justify-between '>
           <div className='flex sm:space-x-2 md:space-x-3 lg:space-x-4 justify-center items-center' >
             <img className='w-20 sm:w-[100px] md:w-[140px] lg:w-[180px] xl:w-60 object-cover'  src="./src/assets/universidad.png" alt="" />
-            <Link to="/Home">
+            <Link to="/">
               <img className='w-10 sm:w-12 md:w-[70px] lg:w-28 xl:w-32 object-cover' src="./src/assets/logocir.png" alt="" />
             </Link>
           </div>
