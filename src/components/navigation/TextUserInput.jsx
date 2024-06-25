@@ -11,7 +11,7 @@ export default function TextUserInput(props) {
   };
   return (
     <>
-      <div className='flex flex-col items-center justify-center space-y-4'>
+      <div className='flex flex-col items-center justify-center m-4 xl:m-8 space-y-4'>
         
         <label htmlFor="userText" className="block justify-start font-bold text-gray-700">{props.labeltext}</label>
         <input 
