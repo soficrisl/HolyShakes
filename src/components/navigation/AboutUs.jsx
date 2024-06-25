@@ -4,6 +4,7 @@ import Logoaboutus from '../../assets/Logoaboutus.png' ;
 import logouni from '../../assets/logouni.png' ;
 import mail from '../../assets/mail.png' ;
 import flechas from '../../assets/flechas.png' ;
+import phone from '../../assets/phone.png' ;
 
 
 const AboutUs = () => {
@@ -64,9 +65,9 @@ const AboutUs = () => {
             <span>hollyshakes@gmail.com</span>
           </div>
           <div className="flex justify-center items-center space-x-4">
-            <img
-              src="https://placehold.co/24x24"
-              alt="Phone Icon"
+          <img
+              src={phone}
+              alt="telefono"
               className="h-6"
             />
             <span>+58 4129223916</span>
