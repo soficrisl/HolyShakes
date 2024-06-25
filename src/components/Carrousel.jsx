@@ -126,7 +126,7 @@ const Carrousel = () => {
   return (
     <div> 
       <div className="w-3/4 flex mx-auto m-16 flex-col mb-2 font-montserrat">
-        <h2 className = " text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-bold ">PRODUCTOS</h2>
+        <h2 className = " text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold ">PRODUCTOS</h2>
         <div className="mt-6">
           <Slider{...settings}>
               {data.map((d) => 
@@ -146,7 +146,9 @@ const Carrousel = () => {
               )}
           </Slider>
       </div>
-      <button className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol hover:bg-orange-50'> Ver todo el Menu</button>
+      <button 
+      className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol hover:bg-orange-50'
+      style= {{fontFamily: "'Open Sans' , sans-serif", fontWeight: 'bold'}}> Ver todo el Menú</button>
     </div>
 
 
