@@ -2,33 +2,39 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import PropTypes from 'prop-types';   
+import PropTypes from 'prop-types'; 
+import swimagen from "../assets/carrousel_images/egg_sandwich.png";   
+import milkshakeimagen from "../assets/carrousel_images/milkshake.png";  
+import cake from "../assets/carrousel_images/choc_cake.png" ;
+import pernil from "../assets/carrousel_images/sandwich.png" ;
+import waffles from "../assets/carrousel_images/waffles.png";
+import empanadas from "../src/assets/carrousel_images/empanaditas.png"
 
 const Carrousel = () => {
   const data = [
     {
       product: 'Sandwich de Huevo',
-      image: '../src/assets/carrousel_images/egg_sandwich.png'
+      image: swimagen
     },
     {
       product: 'PB Milkshake',
-      image: '../src/assets/carrousel_images/milkshake.png'
+      image: milkshakeimagen
     },
     {
       product: 'Torta de Nutella',
-      image: '../src/assets/carrousel_images/choc_cake.png'
+      image: cake
     },
     {
       product: 'Sandwich de Pernil',
-      image: '../src/assets/carrousel_images/sandwich.png'
+      image: pernil
     },
     {
       product: 'Waffles',
-      image: '../src/assets/carrousel_images/waffles.png'
+      image: waffles
     },
     {
       product: 'Empanaditas',
-      image: '../src/assets/carrousel_images/empanaditas.png'
+      image: empanadas
     },
   ];
 
