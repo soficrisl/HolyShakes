@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
 import './FoodDisplay.css'
-import {MenuContext} from './context/MenuContext'
+import {MenuContext} from '../context/Menucontext'
 
 const FoodDisplay = () => {
 

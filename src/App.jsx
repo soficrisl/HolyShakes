@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
@@ -31,7 +32,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home correoUsuario={usuario ? usuario.email : null}/>} />
-          {/* <Route exact path="/menu" element={<Menu />} /> */}
+          <Route exact path="/Menu" element={<Menu />} />
           <Route exact path="/login" element={usuario ? <Navigate to="/" replace />: <Login />} />
           <Route exact path="/register" element={usuario ? <Navigate to="/" replace />: <Register />} />
           <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace />: <LoginAdmin/>} />
