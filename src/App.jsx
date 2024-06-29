@@ -10,6 +10,7 @@ import appFirebase from "./credentials";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./styles.css"
 import LoginAdmin from "./pages/LoginAdmin"
+import Dashboard from "./pages/Dashboard"
 
 const auth = getAuth(appFirebase);
 
@@ -36,7 +37,8 @@ function App() {
           <Route exact path="/register" element={usuario ? <Navigate to="/" replace />: <Register />} />
           <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace />: <LoginAdmin/>} />
           <Route exact path="/feedback" element={<Feedback />} />
-        </Routes>
+          <Route exact path="/dashboard" element={<Dashboard/>}/>
+        </Routes> 
       </div>
     </Router>
   );
