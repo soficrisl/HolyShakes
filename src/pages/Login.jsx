@@ -8,7 +8,6 @@ function Login() {
   return (
     <div className=" w-full h-full bg-gradient-circle ">
     <Navbar />
-    <AboutUs />
     <Mainlogin /> 
     <Footer/>
     </div>
