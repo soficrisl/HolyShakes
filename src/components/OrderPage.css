@@ -1,0 +1,175 @@
+/* src/components/OrderPage.css */
+
+.order-page {
+  padding: 20px;
+  background: linear-gradient(to right, #f5deb3, #fffacd);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.title-text {
+  color: #FFA500; /* Naranja exacto */
+  margin-right: 10px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 80%;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.item-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+.item-details h2 {
+  font-size: 1.5rem;
+  color: #555;
+}
+
+.item-details p {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.item-price {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.price-label {
+  color: #FF8811; /* Naranja del precio */
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-controls button {
+  background-color: transparent;
+  border: none;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.quantity-controls .black-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.quantity-controls .black-button:hover {
+  background-color: #333;
+}
+
+.quantity-controls .trash-button {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.payment-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.payment-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.payment-section p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.total-amount {
+  background-color: #FFC107; /* Color del rectángulo */
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.checkout-button {
+  background-color: #FFA500; /* Naranja exacto */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.checkout-button:hover {
+  background-color: #FF8C00;
+}
+
+.discard-button {
+  background-color: #FFA500; /* Naranja exacto */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 30px; /* Botón ovalado */
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.discard-button:hover {
+  background-color: #FF8C00;
+}

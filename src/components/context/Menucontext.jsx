@@ -1,31 +1,34 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React, { useState, createContext, useEffect } from "react";
 import { food_list } from "../../assets/products";
-import { unstable_useViewTransitionState } from "react-router-dom";
 
-export const MenuContext = createContext(null)
+export const MenuContext = createContext(null);
 
 const MenuContextProvider = (props) => {
-
     const [cartItems, setCartItems] = useState({});
 
     const addToCart = (itemId) => {
         if (!cartItems[itemId]) {
-            setCartItems((prev)=>({...prev,[itemId]:1}))
+            setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
+        } else {
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         }
-        else {
-            setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
-        }
-    }
+    };
 
     const removeFromCart = (itemId) => {
-        setCartItems((prev)=>({...prev,[itemId]: prev[itemId]-1}))
-    }
+        setCartItems((prev) => {
+            const updatedCart = { ...prev };
+            if (updatedCart[itemId] > 1) {
+                updatedCart[itemId] -= 1;
+            } else {
+                delete updatedCart[itemId];
+            }
+            return updatedCart;
+        });
+    };
 
-    useEffect(()=> {
+    useEffect(() => {
         console.log(cartItems);
-    }, [cartItems])
+    }, [cartItems]);
 
     const contextValue = {
         food_list,
@@ -33,13 +36,13 @@ const MenuContextProvider = (props) => {
         setCartItems,
         addToCart,
         removeFromCart
-    }
-    
+    };
+
     return (
-        <MenuContext.Provider value = {contextValue}>
+        <MenuContext.Provider value={contextValue}>
             {props.children}
         </MenuContext.Provider>
-    )
-}
+    );
+};
 
-export default MenuContextProvider
+export default MenuContextProvider;
