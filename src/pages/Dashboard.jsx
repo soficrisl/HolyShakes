@@ -32,7 +32,7 @@ export default function Dashboard(){
   return (
     <>
       <Navbar></Navbar>
-      <main className='bg-gradient-circle h-screen sm:h-auto flex-col flex p-2 gap-y-2 justify-center xl:p-8 font-montserrat  text-xs sm:text-sm md:text-lg lg:text-xl'>
+      <main className='bg-gradient-circle h-screen sm:h-auto flex-col flex p-4 sm:p-8 gap-y-2 sm:gap-y-8 justify-center xl:p-8 font-montserrat  text-xs sm:text-sm md:text-lg lg:text-xl'>
         <div  className='bg-creamhs rounded-2xl p-2'>
           <h1 className=' text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold '>Dashboard</h1>
           <div className='flex flex-col lg:flex-row lg:flex-none'>
@@ -52,8 +52,8 @@ export default function Dashboard(){
           } className="h-32" ></PieChart> */}
           </div>
         </div>
-        <div  className='bg-creamhs h-auto rounded-2xl p-2'>
-          <h2 className=' text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold '>Ventas diarias</h2>
+        <div  className='bg-creamhs h-auto gap-y-4 rounded-2xl p-2'>
+          <h2 className=' text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold '>Ventas Semanales</h2>
           <Graphics></Graphics>
         </div>
       </main>

@@ -46,7 +46,7 @@ export default function Graphics(props) {
 
   return (
     <>
-      <div className='bg-white p-2'>
+      <div className='bg-white w-auto justify-center flex p-2 '>
             <Bar data={data} options={options} />
       </div>
     </>
