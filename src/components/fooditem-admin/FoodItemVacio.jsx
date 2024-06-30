@@ -16,7 +16,7 @@ const FoodItemVacio = () => {
                 +____</p>
             </div>
             <p className='food-item-description'>+_____ <h1><img src={edit} alt="Edit Icon" className="descrip-image" /></h1></p>
-            <p className='food-item-price'>+_____ <h1> <img src={edit} alt="Edit Icon" className="price-image" /></h1></p>
+            <p className='food-item-price'>$_____ <h1> <img src={edit} alt="Edit Icon" className="price-image" /></h1></p>
         </div>
     </div>
   )
