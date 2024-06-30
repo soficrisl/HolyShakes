@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.1.4",
     "chart.js": "^4.4.3",
+    "dayjs": "^1.11.11",
     "firebase": "^10.12.2",
     "flowbite": "^2.3.0",
     "headlessui": "^0.0.0",
