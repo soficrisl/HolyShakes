@@ -7,7 +7,7 @@ import {menu_list} from '../../assets/products'
 const ExploreMenu = ({category, setCategory}) => {
   return (
     <div className='explore-menu' id='explore-menu'>
-    <h1>Explora nuestro menu</h1>
+    <h1>MENÚ</h1>
     <div className="explore-menu-list">
         {menu_list.map((item, index)=>{
             return(

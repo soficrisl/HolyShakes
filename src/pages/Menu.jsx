@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import React, {useState} from 'react'
 import Footer from "../components/navigation/Footer"
 import Navbar from "../components/navigation/Navbar"
@@ -14,9 +14,8 @@ function Menu() {
     <>
       <div className=" w-full h-full bg-gradient-circle">
         <Navbar/>
-        <h1>hola</h1>
         <ExploreMenu category={category} setCategory={setCategory}/>
-        <FoodDisplay/>
+        <FoodDisplay category={category}/>
         <Footer/>
       </div>
     </>

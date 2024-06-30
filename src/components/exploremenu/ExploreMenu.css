@@ -4,6 +4,15 @@
   gap: 20px;
 }
 
+.explore-menu h1 {
+  color: #9dd9d2;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 39px;
+  margin-top: 35px;
+  text-align: center;
+}
+
 .explore-menu p {
   font-family: "Montserrat", sans-serif;
   margin-bottom: 10px;
