@@ -52,3 +52,45 @@ explore-menu-list-item .active {
   border: 4px solid #9dd;
   padding: 2px;
 }
+
+@media (max-width: 768px) {
+  .explore-menu h1 {
+    font-size: 30px;
+  }
+
+  .explore-menu p {
+    margin-left: 20px;
+  }
+
+  .explore-menu-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .explore-menu-list-item {
+    flex-basis: 45%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-menu h1 {
+    font-size: 26px;
+  }
+
+  .explore-menu p {
+    margin-left: 10px;
+  }
+
+  .explore-menu-list {
+    gap: 20px;
+    padding: 10px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .explore-menu-list-item {
+    flex-shrink: 0;
+    min-width: 200px;
+  }
+}

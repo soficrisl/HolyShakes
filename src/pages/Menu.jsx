@@ -5,6 +5,7 @@ import Navbar from "../components/navigation/Navbar"
 import "../styles.css"
 import FoodDisplay from "../components/fooddisplay/FoodDisplay"
 import ExploreMenu from "../components/exploremenu/ExploreMenu"
+import SearchBar from '../components/searchbar/SearchBar'
 
 function Menu() {
 
@@ -15,6 +16,7 @@ function Menu() {
       <div className=" w-full h-full bg-gradient-circle">
         <Navbar/>
         <ExploreMenu category={category} setCategory={setCategory}/>
+        <SearchBar/>
         <FoodDisplay category={category}/>
         <Footer/>
       </div>

@@ -14,7 +14,7 @@ body {
 
 .food-item {
   display: flex;
-  flex-direction: row-reverse; /* Ensure image is on the right side */
+  flex-direction: row-reverse;
   width: 100%;
   height: auto;
   border-radius: 15px;
@@ -24,6 +24,7 @@ body {
   overflow: hidden;
   background-color: white;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .food-item-image {
