@@ -6,6 +6,7 @@ import "../styles.css"
 import FoodDisplay from "../components/fooddisplay/FoodDisplay"
 import ExploreMenu from "../components/exploremenu/ExploreMenu"
 import SearchBar from '../components/searchbar/SearchBar'
+import RealizarPedido from '../components/realizarpedido/RealizarPedido'
 
 function Menu() {
 
@@ -18,6 +19,7 @@ function Menu() {
         <ExploreMenu category={category} setCategory={setCategory}/>
         <SearchBar/>
         <FoodDisplay category={category}/>
+        <RealizarPedido/>
         <Footer/>
       </div>
     </>
