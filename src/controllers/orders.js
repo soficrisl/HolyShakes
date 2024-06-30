@@ -11,9 +11,14 @@ import {
     updateDoc,
   } from 'firebase/firestore';
 import { firestore } from "../credentials";
+import "dayjs/locale/es";
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
-export async function createProduct(data) {
-    
+
+export async function createOrder(data) {
+    const productsCollection = collection(firestore, 'pedidos');
+    await addDoc(productsCollection, data);
 }
 
 export async function deleteOrder(id) {  }
@@ -51,9 +56,14 @@ export async function getEarns() {
 
 
 export async function getCountProductsOrders() {
-    const data = await getProductsOrders();
+    const orders = await getOrders();
+    const today = dayjs();
+    const filteredOrders = orders.filter(order => dayjs(order.fecha,'YYYY-MM-DD').startOf("day").isSame(dayjs(today).startOf("day"), "day"));
+
+    const products = filteredOrders.map(order => order.productos)
+
     let sum = 0;
-    data.forEach(item => {
+    products.forEach(item => {
         const value = Object.values(item)[0]; // Assuming each object has only one key-value pair
         sum += value;
     });

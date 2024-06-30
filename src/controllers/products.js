@@ -10,11 +10,20 @@ import {
   } from 'firebase/firestore';
 import { firestore } from "../credentials";
 
-import {getProductsOrders} from '../controllers/orders'
+import {getProductsOrders, getOrders} from '../controllers/orders'
 import dayjs from 'dayjs';
+import "dayjs/locale/es";
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';// If you need to use isSameOrBefore
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';// If you need to use isSameOrAfter
+import { toDimension } from 'chart.js/helpers';
+import { get } from 'firebase/database';
+
+dayjs.extend(isSameOrBefore); 
+dayjs.extend(isSameOrAfter); 
 
 export async function createProduct(data) {
-    
+    const productsCollection = collection(firestore, 'productos');
+    await addDoc(productsCollection, data);
 }
 
 export async function deleteProduct(id) {  }
@@ -36,7 +45,7 @@ export async function getProductsCategory() {
 }
 
 export async function getProductsId(id) {
-    const postsCollection = collection(db, 'productos');
+    const postsCollection = collection(firestore, 'productos');
     const postRef = doc(postsCollection, id);
     const postDoc = await getDoc(postRef);
   
@@ -46,7 +55,7 @@ export async function getProductsId(id) {
   }
 
   export async function updateProducts(id, data) {
-    const postsCollection = collection(db, 'productos');
+    const postsCollection = collection(firestore, 'productos');
     const postRef = doc(postsCollection, id);
     await updateDoc(postRef, data);
   }
@@ -61,14 +70,27 @@ export async function getProductsId(id) {
         //console.log(array_category);
         for (let j = 0; j < map2.length; j++){
         array_frequency = Object.keys(map2[j])[0];
+        //console.log(array_frequency);
         if (array_category == array_frequency){
-        if(result.has(array_category)){
-            result.set(map1[i][array_category],result[array_category] + map2[j][array_frequency]);
-        }else{
-            result.set(map1[i][array_category], map2[j][array_frequency]);
+            //console.log(array_category == array_frequency);
+            if(result.has(map1[i][array_category])){
+                let currentValue = result.get(map1[i][array_category]);
+                result.set(map1[i][array_category],currentValue + map2[j][array_frequency]);
+            }else{
+                result.set(map1[i][array_category], map2[j][array_frequency]);
+                }
+            }
         }
-        }
-        }
+    }
+    if (!result.has("Bedida")) {
+        result.set("Bedida", 0);
+    }
+
+    if (!result.has("Salado")) {
+        result.set("Salado", 0);
+    }
+    if (!result.has("Dulce")) {
+        result.set("Dulce", 0);
     }
     return result;    
 }
@@ -84,9 +106,123 @@ export async function getCategoryFrequency(){
 
     return mergeMapsByKey(array,flattenedArray2);
 }
+export async function getProductsDay() {
 
-export async function getProductosByDay() {
 
-
+    const products = await getProductsCategory();
+    const orders = await getOrders();
     
+    let array_day = [];
+    // [{value: 10, label: 'Bedida' },{value: 10, label: 'Comida' }]
+    const today = dayjs();
+    
+    const filteredOrders = orders.filter(order => dayjs(order.fecha,'YYYY-MM-DD').startOf("day").isSame(dayjs(today).startOf("day"), "day"));
+        
+        //importante
+        const productsOrders = filteredOrders.map(order => order.productos).flat();
+        
+        const filteredProducts = mergeMapsByKey(products,productsOrders);
+        
+        const productsObject ={};
+
+        filteredProducts.forEach((value, key) => {
+            productsObject[key] = value;
+          })
+
+        const transformedProducts = Object.entries(productsObject).forEach(([label, _quantity]) => {
+            array_day.push({
+                value: _quantity, // Assuming you want to set this value statically to 10
+                label: label,
+                color: getColorForLabel(label)
+              });
+            });
+    return array_day;
+
+}
+
+function getColorForLabel(label) {
+    let hash = 0;
+    for (let i = 0; i < label.length; i++) {
+      hash = label.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    let color = '#';
+    for (let i = 0; i < 3; i++) {
+      const value = (hash >> (i * 8)) & 0xFF;
+      color += ('00' + value.toString(16)).substr(-2);
+    }
+    return color;
+  }
+
+export async function getProductsWeek() {
+    const products = await getProductsCategory();
+    const orders = await getOrders();
+    let array_day = [];
+    //console.log(orders);
+    //console.log(products);
+    array_day = getProductsDate(7, 'day', "dddd", orders, products, array_day);
+    array_day = transformData(array_day);
+    return array_day;
+}
+
+export async function getProductsMonth() {
+    const products = await getProductsCategory();
+    const orders = await getOrders();
+    let array_day = [];
+    //console.log(orders);
+    //console.log(products);
+    array_day = getProductsDate(6, 'month', "MMM", orders, products, array_day);
+    array_day = transformData(array_day);
+    return array_day;
+}
+
+function transformData(input) {
+  const data = {
+    labels: [],
+    datasets: []
+  };
+
+  const categories = {
+    Dulce: [],
+    Salado: [],
+    Bebida: []
+  };
+
+  input.forEach(item => {
+    data.labels.push(item.day);
+    Object.keys(categories).forEach(category => {
+      categories[category].push(item[category] || 0);
+    });
+  });
+
+  Object.keys(categories).forEach((category, index) => {
+    data.datasets.push({
+      label: category,
+      data: categories[category],
+      stack: 1,
+      borderWidth: 1
+    });
+  });
+
+  return data;
+}
+
+function getProductsDate(index, unit, unit_format, orders, products, array_day){
+    for (let i = 0; i < index; i++){
+        
+        const today = dayjs();
+        const week = today.subtract(i, unit );
+        const filteredOrders = orders.filter(order => dayjs(order.fecha,'YYYY-MM-DD').startOf(unit).isSame(dayjs(week).startOf(unit), unit));
+        
+        //importante
+        const productsOrders = filteredOrders.map(order => order.productos).flat();
+        
+        const filteredProducts = mergeMapsByKey(products,productsOrders);
+        filteredProducts.set(unit, week.format(unit_format))
+        const productsObject ={};
+        filteredProducts.forEach((value, key) => {
+            productsObject[key] = value;
+          })
+        array_day.push(productsObject );
+    }
+    return array_day;
 }
