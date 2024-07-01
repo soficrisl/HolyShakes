@@ -11,6 +11,7 @@ import {
     updateDoc,
   } from 'firebase/firestore';
 import { firestore } from "../credentials";
+import dayjs from 'dayjs';
 import "dayjs/locale/es";
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
@@ -46,27 +47,25 @@ export async function getProductsOrders() {
 }
 export async function getSumTotal() {
     const orders = await getOrders();
-    return orders.reduce((sum, order) => sum + order["subtotal"], 0);
+    const today = dayjs();
+    const filteredOrders = orders.filter(order => dayjs(order.fecha,'YYYY-MM-DD').startOf("month").isSame(dayjs(today).startOf("month"), "month"));
+    return filteredOrders.reduce((sum, order) => sum + order["subtotal"], 0);
 }
-
-export async function getEarns() {
-    const orders = await getOrders();
-    return orders.reduce((sum, order) => sum + order["subtotal"]*0.77, 0);
-}
-
 
 export async function getCountProductsOrders() {
     const orders = await getOrders();
     const today = dayjs();
-    const filteredOrders = orders.filter(order => dayjs(order.fecha,'YYYY-MM-DD').startOf("day").isSame(dayjs(today).startOf("day"), "day"));
+    const filteredOrders = orders.filter(order => dayjs(order.fecha,'YYYY-MM-DD').startOf("month").isSame(dayjs(today).startOf("month"), "month"));
 
-    const products = filteredOrders.map(order => order.productos)
-
+    const products = filteredOrders.map(order => order.productos[0])
+    
     let sum = 0;
-    products.forEach(item => {
-        const value = Object.values(item)[0]; // Assuming each object has only one key-value pair
-        sum += value;
+    products.forEach(obj => {
+        Object.values(obj).forEach(value => {
+            sum += value;
+        });
     });
+    
     return sum
 }
 

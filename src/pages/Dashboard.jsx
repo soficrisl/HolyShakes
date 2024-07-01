@@ -2,12 +2,11 @@ import Insight from "../components/Insight";
 import Navbar from '../components/navigation/Navbar'
 import Footer from "../components/navigation/Footer";
 import { useEffect, useState } from "react";
-import {Bar} from 'react-chartjs-2';
-import {PieChart} from "react-minimal-pie-chart"
+import {Pie} from 'react-chartjs-2';
 import Graphics from '../components/Graphics'
 import Chart from 'chart.js/auto';
-import {getProductsId, getProductsWeek, getProductsDay} from '../controllers/products'
-import { getCountProductsOrders, getSumTotal, getEarns, getOrders} from '../controllers/orders'
+import {getProductsId, getProductsWeek, getProductsDay, getProductsMonth} from '../controllers/products'
+import { getCountProductsOrders, getSumTotal, getOrders} from '../controllers/orders'
 import { get } from "firebase/database";
 
 /**
@@ -22,13 +21,25 @@ import { get } from "firebase/database";
 
 
 export default function Dashboard(){
-  // const [productspie, setProducts] = useState([]);
-  // const [productsbar, setProductsBar] = useState([]);
-  
+  const [productspie, setProductsPie] = useState({
+    labels: [],
+    datasets: [{ data: [], backgroundColor: [] }]
+  });
+  const [productsbarWeek, setProductsBarWeek] = useState([]);
+  const [productsbarMonth, setProductsBarMonth] = useState([]);
+  const [productsSales, setProductsSales] = useState(0);
+  const [productsEarns, setProductsEarns] = useState(0);
+  const [productsCount, setProductsCount] = useState(0);
+
   useEffect(() => {
-  //getProductsDay().then((data)=>{ setProducts(data)})
-  //getProductsWeek().then((data)=>{ setProductsBar(data); console.log(data)})},[])
-})
+  getProductsDay().then((data)=>{ setProductsPie(data)})
+  getProductsWeek().then((data)=>{ setProductsBarWeek(data)  });
+  getProductsMonth().then((data)=>{ setProductsBarMonth(data) })
+  getCountProductsOrders().then((data)=>{ setProductsCount(data) })
+  getSumTotal().then((data)=>{ setProductsSales(data);setProductsEarns(data*0.77) })
+ 
+
+},[]);
   return (
     <>
       <Navbar></Navbar>
@@ -36,25 +47,29 @@ export default function Dashboard(){
         <div  className='bg-creamhs rounded-2xl p-2'>
           <h1 className=' text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold '>Dashboard</h1>
           <div className='flex flex-col lg:flex-row lg:flex-none'>
-            <Insight title='Productos Vendidos' message="Facturación de Holly Shakes en un mes." value='80$'></Insight>
-            <Insight title='Ingresos' message="Ingresos menos gastos de Holly Shakes en un mes." value='300'></Insight>
-            <Insight title='Productos Vendidos' message="Productos Vendidos por Holly Shakes en un mes." value='40'></Insight>
+            
+            <Insight title='Productos Vendidos' message="Facturación de Holly Shakes en un mes." value={productsSales+'$'}></Insight>
+            <Insight title='Ingresos' message="Ingresos menos gastos de Holly Shakes en un mes." value={productsEarns+'$'}></Insight>
+            <Insight title='Productos Vendidos' message="Productos Vendidos por Holly Shakes en un mes." value={productsCount+''}></Insight>
           
           </div>
         </div>
         <div  className='bg-creamhs rounded-2xl p-2'>
           <h2 className=' text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold '>Ventas diarias</h2>
           <div className='bg-white p-2'>
-          {/* <PieChart data={productspie} label={({ dataEntry }) => dataEntry.label} labelStyle={
-        {
-            fill: "white",
-        }
-          } className="h-32" ></PieChart> */}
+           
+           
+           <Pie data={productspie} options={{}} className="max-h-[600px]"></Pie>
           </div>
         </div>
         <div  className='bg-creamhs h-auto gap-y-4 rounded-2xl p-2'>
           <h2 className=' text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold '>Ventas Semanales</h2>
-          <Graphics></Graphics>
+          <Graphics data={productsbarWeek}></Graphics>
+        </div>
+        <div  className='bg-creamhs h-auto gap-y-4 rounded-2xl p-2'>
+          <h2 className=' text-orangehs self tracking-widest text-center text-2xl xl:text-4xl font-montserrat font-semibold '>Ventas Mensuales</h2>
+         
+          <Graphics data={productsbarMonth}></Graphics>
         </div>
       </main>
         

@@ -15,8 +15,7 @@ import dayjs from 'dayjs';
 import "dayjs/locale/es";
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';// If you need to use isSameOrBefore
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';// If you need to use isSameOrAfter
-import { toDimension } from 'chart.js/helpers';
-import { get } from 'firebase/database';
+
 
 dayjs.extend(isSameOrBefore); 
 dayjs.extend(isSameOrAfter); 
@@ -60,41 +59,38 @@ export async function getProductsId(id) {
     await updateDoc(postRef, data);
   }
 
-  function mergeMapsByKey(map1, map2){
-    const result = new Map();
-    // Merge entries from map1
-    let array_category
-    let array_frequency
-    for (let i = 0; i < map1.length; i++){
-        array_category = Object.keys(map1[i])[0];
-        //console.log(array_category);
-        for (let j = 0; j < map2.length; j++){
-        array_frequency = Object.keys(map2[j])[0];
-        //console.log(array_frequency);
-        if (array_category == array_frequency){
-            //console.log(array_category == array_frequency);
-            if(result.has(map1[i][array_category])){
-                let currentValue = result.get(map1[i][array_category]);
-                result.set(map1[i][array_category],currentValue + map2[j][array_frequency]);
-            }else{
-                result.set(map1[i][array_category], map2[j][array_frequency]);
-                }
-            }
-        }
-    }
-    if (!result.has("Bedida")) {
-        result.set("Bedida", 0);
+  function mergeMapsByKey(productsCounts, productsNames){
+    const result = {};
+    
+    productsCounts.forEach(countObj => {
+      Object.keys(countObj).forEach(productId => {
+          // Find the product name using the product ID
+          const productNameObj = productsNames.find(nameObj => nameObj[productId]);
+          if (productNameObj) {
+              const productName = productNameObj[productId];
+              // Add or update the count for the product name in the result
+              if (result[productName]) {
+                  result[productName] += countObj[productId];
+              } else {
+                  result[productName] = countObj[productId];
+              }
+          }
+      });
+  });
+
+    if (!result["Bebida"]) {
+      result["Bebida"] = 0;
     }
 
-    if (!result.has("Salado")) {
-        result.set("Salado", 0);
+    if (!result["Salado"]) {
+      result["Salado"] = 0;
     }
-    if (!result.has("Dulce")) {
-        result.set("Dulce", 0);
-    }
-    return result;    
-}
 
+    if (!result["Dulce"]) {
+      result["Dulce"] = 0;
+    }
+    return result;
+  }
 
 export async function getCategoryFrequency(){
     const array = await getProductsCategory();
@@ -121,22 +117,25 @@ export async function getProductsDay() {
         //importante
         const productsOrders = filteredOrders.map(order => order.productos).flat();
         
-        const filteredProducts = mergeMapsByKey(products,productsOrders);
+        const filteredProducts = mergeMapsByKey(productsOrders,products);
         
-        const productsObject ={};
+        
+        
+        const labels = Object.keys(filteredProducts);
+        const data = Object.values(filteredProducts);
+        const backgroundColor = ['blue', 'red', 'orange']
 
-        filteredProducts.forEach((value, key) => {
-            productsObject[key] = value;
-          })
+        const transformed = {
+          labels: labels,
+          datasets: [
+            {
+              data: data,
+              backgroundColor: backgroundColor
+            }
+          ]
+        };
 
-        const transformedProducts = Object.entries(productsObject).forEach(([label, _quantity]) => {
-            array_day.push({
-                value: _quantity, // Assuming you want to set this value statically to 10
-                label: label,
-                color: getColorForLabel(label)
-              });
-            });
-    return array_day;
+    return transformed;
 
 }
 
@@ -160,7 +159,7 @@ export async function getProductsWeek() {
     //console.log(orders);
     //console.log(products);
     array_day = getProductsDate(7, 'day', "dddd", orders, products, array_day);
-    array_day = transformData(array_day);
+    array_day = transformData(array_day,"day");
     return array_day;
 }
 
@@ -171,11 +170,12 @@ export async function getProductsMonth() {
     //console.log(orders);
     //console.log(products);
     array_day = getProductsDate(6, 'month', "MMM", orders, products, array_day);
-    array_day = transformData(array_day);
+    array_day = transformData(array_day,"month");
+
     return array_day;
 }
 
-function transformData(input) {
+function transformData(input,mode) {
   const data = {
     labels: [],
     datasets: []
@@ -188,9 +188,12 @@ function transformData(input) {
   };
 
   input.forEach(item => {
-    data.labels.push(item.day);
+    data.labels.push(item[mode]);
     Object.keys(categories).forEach(category => {
-      categories[category].push(item[category] || 0);
+   
+      if (item.hasOwnProperty(category)) {
+        categories[category].push(item[category]);
+      }
     });
   });
 
@@ -208,21 +211,32 @@ function transformData(input) {
 
 function getProductsDate(index, unit, unit_format, orders, products, array_day){
     for (let i = 0; i < index; i++){
-        
+        //ve si la fecha concide con la fecha actual
         const today = dayjs();
         const week = today.subtract(i, unit );
         const filteredOrders = orders.filter(order => dayjs(order.fecha,'YYYY-MM-DD').startOf(unit).isSame(dayjs(week).startOf(unit), unit));
         
         //importante
-        const productsOrders = filteredOrders.map(order => order.productos).flat();
+        let filteredProducts = {};
+        if(filteredOrders != undefined){
+          
+          const productsOrders = filteredOrders.map(order => order.productos[0]);
+          
+          
+          filteredProducts = mergeMapsByKey(productsOrders,products);
+            
+        }else{
+          filteredProducts = mergeMapsByKey([],products);
+        }
         
-        const filteredProducts = mergeMapsByKey(products,productsOrders);
-        filteredProducts.set(unit, week.format(unit_format))
+        filteredProducts[unit]=week.format(unit_format)
+        //convierte en objeto
         const productsObject ={};
-        filteredProducts.forEach((value, key) => {
+        /* filteredProducts.forEach((value, key) => {
             productsObject[key] = value;
-          })
-        array_day.push(productsObject );
+          }) */
+        array_day.push(filteredProducts );
     }
+    
     return array_day;
 }
