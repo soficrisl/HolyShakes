@@ -1,5 +1,3 @@
-// src/components/fooditem/FoodItem.jsx
-
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import './FoodItem.css';
