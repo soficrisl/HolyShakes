@@ -1,6 +1,3 @@
-// src/components/fooddisplay/FoodDisplay.jsx
-
-/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import './FoodDisplay.css';
 import PropTypes from 'prop-types';
@@ -24,12 +21,12 @@ const FoodDisplay = ({ category }) => {
                 description={item.description}
                 price={item.price}
                 image={item.image}
-                onAddToCart={() => addToCart(item._id)} // Pasar el handler para agregar al carrito
-                onRemoveFromCart={() => removeFromCart(item._id)} // Pasar el handler para eliminar del carrito
+                onAddToCart={() => addToCart(item._id)}
+                onRemoveFromCart={() => removeFromCart(item._id)}
               />
             );
           }
-          return null; 
+          return null;
         })}
       </div>
     </div>
@@ -38,7 +35,6 @@ const FoodDisplay = ({ category }) => {
 
 FoodDisplay.propTypes = {
   category: PropTypes.string.isRequired,
-  setCategory: PropTypes.func.isRequired,
 };
 
 export default FoodDisplay;

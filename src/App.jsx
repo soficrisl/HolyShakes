@@ -10,7 +10,7 @@ import LoginAdmin from './pages/LoginAdmin';
 import OrderPage from './pages/OrderPage';
 import appFirebase from './credentials';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import MenuContextProvider from "./components/context/MenuContext";
+import MenuContextProvider from './components/context/MenuContext';
 import './styles.css';
 
 const auth = getAuth(appFirebase);
@@ -27,7 +27,7 @@ function App() {
   });
 
   return (
-    <MenuContextProvider>
+    <MenuContextProvider> {/* Envolver con MenuContextProvider */}
       <Router>
         <div className="App">
           <Routes>
