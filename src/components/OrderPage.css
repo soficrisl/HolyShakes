@@ -1,175 +1,166 @@
-/* src/components/OrderPage.css */
-
-.order-page {
-  padding: 20px;
-  background: linear-gradient(to right, #f5deb3, #fffacd);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-.title {
+.order-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to right, #f4d06f, #b4e4e3); 
+}
+
+.order-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: #333;
+  padding: 20px;
+  background-color: #f8f8f8;
 }
 
-.title-text {
-  color: #FFA500; /* Naranja exacto */
+.order-title {
+  font-size: max(2.5vw, 24px);
+  color: orange;
   margin-right: 10px;
 }
 
-.icon {
-  width: 40px;
-  height: 40px;
-  vertical-align: middle;
+.order-cart-icon {
+  width: 50px;
+  height: 50px;
 }
 
-.cart-items {
+.order-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  padding: 20px;
 }
 
-.cart-item {
+.order-item {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   width: 80%;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.item-image {
-  width: 100px;
-  height: 100px;
+.order-item-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
   margin-right: 20px;
-  border-radius: 8px;
 }
 
-.item-details {
-  flex-grow: 1;
-}
-
-.item-details h2 {
-  font-size: 1.5rem;
-  color: #555;
-}
-
-.item-details p {
-  font-size: 1.2rem;
-  color: #888;
-}
-
-.item-price {
+.order-item-details {
+  flex: 1;
   display: flex;
-  align-items: center;
-  margin-top: 5px;
+  flex-direction: column;
 }
 
-.price-label {
-  color: #FF8811; /* Naranja del precio */
-  font-size: 1.5rem;
+.order-item-name {
+  font-size: 1.5em;
   font-weight: bold;
+}
+
+.order-item-price {
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: orange;
 }
 
 .quantity-controls {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
-.quantity-controls button {
+.quantity-button {
+  background-color: #ff9900;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2em;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0 5px;
+}
+
+.quantity {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.trash-button {
   background-color: transparent;
   border: none;
-  margin: 0 5px;
   cursor: pointer;
 }
 
-.quantity-controls .black-button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  margin: 0 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.quantity-controls .black-button:hover {
-  background-color: #333;
-}
-
-.quantity-controls .trash-button {
-  background-color: grey;
-  color: white;
-  border: none;
-  padding: 5px;
-  margin: 0 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
+.trash-button img {
+  width: 30px;
+  height: 30px;
 }
 
 .payment-section {
-  margin-top: 30px;
+  background-color: #fff;
+  padding: 20px;
+  width: 80%;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .payment-title {
-  font-size: 2rem;
+  font-size: 1.8em;
   margin-bottom: 10px;
-  color: #333;
-}
-
-.payment-section p {
-  font-size: 1.2rem;
-  margin: 5px 0;
-  color: #555;
+  color: orange;
 }
 
 .amount {
   font-weight: bold;
 }
 
-.total-amount {
-  background-color: #FFC107; /* Color del rectángulo */
-  padding: 5px;
-  border-radius: 5px;
-  font-weight: bold;
+.total-amount-line {
+  border-top: 2px solid orange;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .checkout-button {
-  background-color: #FFA500; /* Naranja exacto */
-  color: white;
+  background-color: blue;
   border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border-radius: 5px;
+  padding: 15px 30px;
+  font-size: 1.5em;
+  color: #fff;
   cursor: pointer;
-  font-size: 1.2rem;
-}
-
-.checkout-button:hover {
-  background-color: #FF8C00;
+  border-radius: 4px;
+  margin-top: 20px;
 }
 
 .discard-button {
-  background-color: #FFA500; /* Naranja exacto */
-  color: white;
+  background-color: orange;
   border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border-radius: 30px; /* Botón ovalado */
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: #fff;
   cursor: pointer;
-  font-size: 1.2rem;
+  border-radius: 50px;
+  margin: 20px auto;
+  display: block;
 }
 
-.discard-button:hover {
-  background-color: #FF8C00;
+footer {
+  background-color: #f8f8f8;
+  padding: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }

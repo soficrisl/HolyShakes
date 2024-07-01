@@ -6,7 +6,7 @@ import FoodDisplay from '../components/fooddisplay/FoodDisplay';
 import ExploreMenu from '../components/exploremenu/ExploreMenu';
 import SearchBar from '../components/searchbar/SearchBar';
 import RealizarPedido from '../components/realizarpedido/RealizarPedido';
-import { MenuContext } from '../components/context/MenuContext';  // Importar MenuContext
+import { MenuContext } from '../components/context/MenuContext'; 
 
 function Menu() {
   const [category, setCategory] = useState('All');
