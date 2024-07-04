@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
-import Feedback from './pages/Feedback';
-import Menu from './pages/Menu';
-import Home from './pages/Home';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import LoginAdmin from './pages/LoginAdmin';
-import OrderPage from './pages/OrderPage';
-import appFirebase from './credentials';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
+import Feedback from "./pages/Feedback";
+import Menu from "./pages/Menu";
+import PendingOrders from "./pages/PendingOrders";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import appFirebase from "./credentials";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import "./styles.css"
+import LoginAdmin from "./pages/LoginAdmin"
+import Dashboard from "./pages/Dashboard"
+import CompletedOrders from "./pages/CompletedOrders";
 import MenuContextProvider from './components/context/MenuContext';
-import './styles.css';
+import OrderPage from './pages/OrderPage';
 
 const auth = getAuth(appFirebase);
 
@@ -38,6 +41,9 @@ function App() {
             <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace /> : <LoginAdmin />} />
             <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/order" element={<OrderPage />} />
+            <Route exact path="/dashboard" element={<Dashboard/>}/>
+            <Route exact path="/pendingorders" element={<PendingOrders/>}/>
+            <Route exact path="/completedorders" element={<CompletedOrders/>}/>
           </Routes>
         </div>
       </Router>
