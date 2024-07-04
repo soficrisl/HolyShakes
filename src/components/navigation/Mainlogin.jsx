@@ -15,17 +15,13 @@ import {
 const auth = getAuth(appFirebase);
 
 const Mainlogin = () => {
-  const facebookAutentication = async () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider);
-  };
 
   const googleAutentication = async () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider);
   };
-
-
+  
+  
   const funcAutentication = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
