@@ -18,12 +18,13 @@ function Menu() {
 
   return (
     <>
-      <div className="w-full h-full bg-gradient-circle">
-        <Navbar />
-        <ExploreMenu category={category} setCategory={setCategory} />
-        <FoodDisplay category={category} onAddToCart={handleAddToCart} />  {/* Pasar el handler a FoodDisplay */}
-        <RealizarPedido />
-        <Footer />
+      <div className=" w-full h-full bg-gradient-circle">
+        <Navbar/>
+        <ExploreMenu category={category} setCategory={setCategory}/>
+        <FoodDisplay category={category}/>
+        <RealizarPedido/>
+        <Footer/>
+
       </div>
     </>
   );
