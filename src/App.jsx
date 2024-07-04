@@ -13,39 +13,41 @@ import "./styles.css"
 import LoginAdmin from "./pages/LoginAdmin"
 import Dashboard from "./pages/Dashboard"
 import CompletedOrders from "./pages/CompletedOrders";
-
+import MenuContextProvider from './components/context/MenuContext';
+import OrderPage from './pages/OrderPage';
 
 const auth = getAuth(appFirebase);
 
 function App() {
   const [usuario, setUsuario] = useState(null);
 
-  onAuthStateChanged(auth, (usuarioFirebase)=>{
-    if (usuarioFirebase){
+  onAuthStateChanged(auth, (usuarioFirebase) => {
+    if (usuarioFirebase) {
       setUsuario(usuarioFirebase);
-    }
-    else{
+    } else {
       setUsuario(null);
     }
-  })
+  });
 
   return (
-
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route exact path="/" element={<Home correoUsuario={usuario ? usuario.email : null}/>} />
-          {/* <Route exact path="/menu" element={<Menu />} /> */}
-          <Route exact path="/login" element={usuario ? <Navigate to="/" replace />: <Login />} />
-          <Route exact path="/register" element={usuario ? <Navigate to="/" replace />: <Register />} />
-          <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace />: <LoginAdmin/>} />
-          <Route exact path="/feedback" element={<Feedback />} />
-          <Route exact path="/dashboard" element={<Dashboard/>}/>
-          <Route exact path="/pendingorders" element={<PendingOrders/>}/>
-          <Route exact path="/completedorders" element={<CompletedOrders/>}/>
-        </Routes> 
-      </div>
-    </Router>
+    <MenuContextProvider> {/* Envolver con MenuContextProvider */}
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route exact path="/" element={<Home correoUsuario={usuario ? usuario.email : null} />} />
+            <Route exact path="/Menu" element={<Menu />} />
+            <Route exact path="/login" element={usuario ? <Navigate to="/" replace /> : <Login />} />
+            <Route exact path="/register" element={usuario ? <Navigate to="/" replace /> : <Register />} />
+            <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace /> : <LoginAdmin />} />
+            <Route exact path="/feedback" element={<Feedback />} />
+            <Route exact path="/order" element={<OrderPage />} />
+            <Route exact path="/dashboard" element={<Dashboard/>}/>
+            <Route exact path="/pendingorders" element={<PendingOrders/>}/>
+            <Route exact path="/completedorders" element={<CompletedOrders/>}/>
+          </Routes>
+        </div>
+      </Router>
+    </MenuContextProvider>
   );
 }
 
