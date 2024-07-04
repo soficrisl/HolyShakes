@@ -12,7 +12,7 @@ import Perfil from './pages/Perfil';
 import appFirebase from './credentials';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import MenuContextProvider from './components/context/MenuContext';
-import './styles.css';
+import OrderPage from './pages/OrderPage';
 
 
 function App() {
@@ -43,6 +43,9 @@ function App() {
             <Route exact path="/perfil" element={<Perfil />} />
             <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/order" element={<OrderPage />} />
+            <Route exact path="/dashboard" element={<Dashboard/>}/>
+            <Route exact path="/pendingorders" element={<PendingOrders/>}/>
+            <Route exact path="/completedorders" element={<CompletedOrders/>}/>
           </Routes>
         </div>
       </Router>
