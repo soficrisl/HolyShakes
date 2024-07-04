@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import "./App.css";
 import Feedback from "./pages/Feedback";
 import Menu from "./pages/Menu";
+import PendingOrders from "./pages/PendingOrders";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -11,6 +12,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./styles.css"
 import LoginAdmin from "./pages/LoginAdmin"
 import Dashboard from "./pages/Dashboard"
+import CompletedOrders from "./pages/CompletedOrders";
+
 
 const auth = getAuth(appFirebase);
 
@@ -38,6 +41,8 @@ function App() {
           <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace />: <LoginAdmin/>} />
           <Route exact path="/feedback" element={<Feedback />} />
           <Route exact path="/dashboard" element={<Dashboard/>}/>
+          <Route exact path="/pendingorders" element={<PendingOrders/>}/>
+          <Route exact path="/completedorders" element={<CompletedOrders/>}/>
         </Routes> 
       </div>
     </Router>

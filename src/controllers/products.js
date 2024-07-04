@@ -11,6 +11,7 @@ import {
 import { firestore } from "../credentials";
 
 import {getProductsOrders, getOrders} from '../controllers/orders'
+import {getUsers} from "../controllers/users"
 import dayjs from 'dayjs';
 import "dayjs/locale/es";
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';// If you need to use isSameOrBefore
@@ -239,4 +240,71 @@ function getProductsDate(index, unit, unit_format, orders, products, array_day){
     }
     
     return array_day;
+}
+
+export async function getUsersProducts(){
+  const orders = await getOrders()
+  const filteredOrders = orders.filter(order => order.pagado === false);
+  const products = await getProducts()
+  const users = await getUsers()
+
+  const transformData = (orders, products, users) => {
+    return orders.map(order => {
+      const user = users.find(user => user.id === order.id_usuario);
+      const userName = user ? user.fname + " " + user.lname : "Unknown User";
+  
+      const formattedProducts = order.productos.flatMap(productEntry => {
+        return Object.entries(productEntry).map(([productId, quantity]) => {
+          const product = products.find(p => p.id === productId);
+          return product ? { name: product.descripcion, quantity, price: product.precio } : null;
+        }).filter(p => p); // Remove nulls if product not found
+      });
+  
+      return {
+        nombre: userName,
+        productos: formattedProducts,
+        id_pedido: order.id
+      };
+    });
+  };
+  
+  // Example usage
+  const finalOutput = transformData(filteredOrders, products, users);
+  return finalOutput;
+}
+
+export async function getUsersOrders(){
+  // Assuming the given datasets are stored in variables: orders, products, and users
+  const orders = await getOrders()
+  const filteredOrders = orders.filter(order => order.pagado === true);
+  const products = await getProducts()
+  const users = await getUsers()
+  
+  const transformData = (orders, products, users) => {
+  return orders.map(order => {
+    const user = users.find(user => user.id === order.id_usuario);
+    const userName = user ? user.fname + " " + user.lname : "Unknown User";
+    
+    
+    const formattedProducts = order.productos.flatMap(productEntry => {
+      return Object.entries(productEntry).map(([productId, quantity]) => {
+        const product = products.find(p => p.id === productId);
+        return product ? { name: product.descripcion, quantity, price: product.precio } : null;
+      }).filter(p => p); // Remove nulls if product not found
+    });
+
+    return {
+      nombre: userName,
+      productos: formattedProducts,
+      id_pedido: order.id,
+      subtotal: order.subtotal,
+      impuestos: order.impuesto,
+      total: order.total,
+      fecha: order.fecha
+    };
+  });
+  };
+
+  const finalOutput = transformData(filteredOrders, products, users);
+  return finalOutput;
 }
