@@ -9,10 +9,12 @@ import Login from './pages/Login';
 import LoginAdmin from './pages/LoginAdmin';
 import OrderPage from './pages/OrderPage';
 import Perfil from './pages/Perfil';
+import Dashboard from './pages/Dashboard';
+import PendingOrders from './pages/PendingOrders';
+import CompletedOrders from './pages/CompletedOrders';
 import appFirebase from './credentials';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import MenuContextProvider from './components/context/MenuContext';
-import OrderPage from './pages/OrderPage';
 
 
 function App() {
