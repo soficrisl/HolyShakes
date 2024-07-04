@@ -17,14 +17,13 @@ const auth = getAuth(appFirebase);
 function App() {
   const [usuario, setUsuario] = useState(null);
 
-  onAuthStateChanged(auth, (usuarioFirebase)=>{
-    if (usuarioFirebase){
+  onAuthStateChanged(auth, (usuarioFirebase) => {
+    if (usuarioFirebase) {
       setUsuario(usuarioFirebase);
-    }
-    else{
+    } else {
       setUsuario(null);
     }
-  })
+  });
 
   return (
 
