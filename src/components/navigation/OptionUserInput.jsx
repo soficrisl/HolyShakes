@@ -12,7 +12,6 @@ export default function TextUserInput({ options,id, labeltext, name, handleChang
           className="mt-2 p-2 border rounded bg-slate-100 w-40 md:w-60 lg:w-80 xl:w-80"
           onChange={handleChange}
         >
-          <option value="">Opciones</option>
           {options.map((option, index) => (
             <option key={index} value={option.value}>{option.label}</option>
           ))}
