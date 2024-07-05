@@ -8,11 +8,11 @@ import cartIcon from '../assets/cart-icon.png';
 import { MenuContext } from '../components/context/MenuContext';
 
 const OrderPage = () => {
-  const { cartItems, food_list, removeFromCart, addToCart } = useContext(MenuContext);
+  const { cartItems, new_food, removeFromCart, addToCart } = useContext(MenuContext);
   const navigate = useNavigate();
 
   const handleQuantityChange = (id, delta) => {
-    const item = food_list.find((foodItem) => foodItem._id === id);
+    const item = new_food.find((foodItem) => foodItem.uid === id);
     if (item) {
       if (delta > 0) {
         addToCart(id);
@@ -31,15 +31,15 @@ const OrderPage = () => {
   };
 
   const cartItemsArray = Object.entries(cartItems).map(([id, quantity]) => {
-    const item = food_list.find((foodItem) => foodItem._id === id);
+    const item = new_food.find((foodItem) => foodItem.uid === id);
     if (!item) {
-      console.error(`Item with id ${id} not found in food_list`);
+      console.error(`Item with id ${id} not found in new_food`);
       return null; // Return null if item is not found
     }
     return { ...item, quantity };
   }).filter(item => item !== null); // Filter out null values
 
-  const subtotal = cartItemsArray.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItemsArray.reduce((sum, item) => sum + item.precio * item.quantity, 0);
   const taxes = subtotal * 0.17; // Assuming a 17% tax rate
   const total = subtotal + taxes;
 
@@ -64,25 +64,25 @@ const OrderPage = () => {
       </div>
       <div className="order-container">
         {cartItemsArray.map((item) => (
-          <div key={item._id} className="order-item">
-            <img src={item.image} alt={item.name} className="order-item-image" />
+          <div key={item.uid} className="order-item">
+            <img src={item.imagen} alt={item.nombre} className="order-item-image" />
             <div className="order-item-details">
-              <h2 className="order-item-name">{item.name}</h2>
-              <p className="order-item-price">${item.price.toFixed(2)}</p>
+              <h2 className="order-item-name">{item.nombre}</h2>
+              <p className="order-item-price">${item.precio.toFixed(2)}</p>
               <div className="quantity-controls">
                 {item.quantity === 1 ? (
                   <>
-                    <button className="trash-button" onClick={() => handleRemoveItem(item._id)}>
+                    <button className="trash-button" onClick={() => handleRemoveItem(item.uid)}>
                       <img src={trashIcon} alt="Eliminar" />
                     </button>
                     <span className="quantity">{item.quantity}</span>
-                    <button className="quantity-button" onClick={() => handleQuantityChange(item._id, 1)}>+</button>
+                    <button className="quantity-button" onClick={() => handleQuantityChange(item.uid, 1)}>+</button>
                   </>
                 ) : (
                   <>
-                    <button className="quantity-button" onClick={() => handleQuantityChange(item._id, -1)}>-</button>
+                    <button className="quantity-button" onClick={() => handleQuantityChange(item.uid, -1)}>-</button>
                     <span className="quantity">{item.quantity}</span>
-                    <button className="quantity-button" onClick={() => handleQuantityChange(item._id, 1)}>+</button>
+                    <button className="quantity-button" onClick={() => handleQuantityChange(item.uid, 1)}>+</button>
                   </>
                 )}
               </div>

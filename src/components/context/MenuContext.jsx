@@ -1,5 +1,4 @@
 import React, { useState, createContext, useEffect } from "react";
-import { food_list } from "../../assets/products";
 import { collection, getDocs, getFirestore, query } from "firebase/firestore";
 import app_firebase from "../../credentials";
 
@@ -7,26 +6,40 @@ export const MenuContext = createContext(null);
 
 const MenuContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const [new_food, setNew_food] = useState([]);
-
+  const [new_food, setNew_food] = useState([]); 
+  
   const addToCart = (itemId) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [itemId]: prev[itemId] ? prev[itemId] + 1 : 1,
-    }));
-  };
-
-  const removeFromCart = (itemId) => {
     setCartItems((prev) => {
+      // Create a new object to prevent mutation
       const updatedCart = { ...prev };
-      if (updatedCart[itemId] > 1) {
-        updatedCart[itemId] -= 1;
+  
+      // Handle both numeric and alphanumeric IDs
+      if (updatedCart.hasOwnProperty(itemId)) {
+        updatedCart[itemId] += 1;
       } else {
-        delete updatedCart[itemId];
+        updatedCart[itemId] = 1;
       }
+  
       return updatedCart;
     });
   };
+  
+  const removeFromCart = (itemId) => {
+    setCartItems((prev) => {
+      const updatedCart = { ...prev };
+  
+      if (updatedCart.hasOwnProperty(itemId)) {
+        if (updatedCart[itemId] > 1) {
+          updatedCart[itemId] -= 1;
+        } else {
+          delete updatedCart[itemId];
+        }
+      }
+  
+      return updatedCart;
+    });
+  };
+  
 
   useEffect(() => {
     console.log(cartItems);
@@ -63,7 +76,6 @@ const MenuContextProvider = (props) => {
   }, []);
 
   const contextValue = {
-    food_list,
     new_food,
     cartItems,
     setCartItems,

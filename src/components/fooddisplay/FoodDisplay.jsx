@@ -6,13 +6,12 @@ import FoodItem from '../fooditem/FoodItem';
 
 const FoodDisplay = ({ category }) => {
   const { new_food, addToCart, removeFromCart } = useContext(MenuContext);
-  console.log("new food", new_food)
   return (
     <div className='food-display' id='food-display'>
       <h2>{category}</h2>
       <div className="food-display-list">
         {new_food.map((item, index) => {
-          if (category === "All" || category === item.category) {
+          if (category === "All" || category === item.categoria) {
             return (
               <FoodItem
                 key={index}

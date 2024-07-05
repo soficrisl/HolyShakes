@@ -16,8 +16,9 @@ const FoodItem = ({
   onAddToCart,
   onRemoveFromCart,
 }) => {
-  const { cartItems,addToCart, removeFromCart } = useContext(MenuContext);
+  const { cartItems, addToCart, removeFromCart } = useContext(MenuContext);
 
+  console.log(cartItems);
   return (
     <div className="food-item">
       <div className="food-item-img-container">
@@ -37,20 +38,19 @@ const FoodItem = ({
           </div>
         )}
       </div>
-        <div className="food-item-info">
-          <div className="food-item-name">
+      <div className="food-item-info">
+        <div className="food-item-name">
           <p>{name}</p>
-          </div>
-          <p className="food-item-description">{description} </p>
-          <p className="food-item-price">${price.toFixed(2)}</p>
+        </div>
+        <p className="food-item-description">{description} </p>
+        <p className="food-item-price">${price.toFixed(2)}</p>
       </div>
-
     </div>
   );
 };
 
 FoodItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
