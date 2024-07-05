@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-unused-vars */
 
 import logo from "../../assets/logocir.png";
 import usuario from "../../assets/usuario.png";

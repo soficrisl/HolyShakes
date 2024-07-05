@@ -1,5 +1,5 @@
 import Google from "../../assets/Google.webp";
-import Facebook from "../../assets/facebook.png";
+/* import Facebook from "../../assets/facebook.png"; */
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
@@ -15,17 +15,13 @@ import {
 const auth = getAuth(appFirebase);
 
 const Mainlogin = () => {
-  const facebookAutentication = async () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider);
-  };
 
   const googleAutentication = async () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider);
   };
-
-
+  
+  
   const funcAutentication = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
