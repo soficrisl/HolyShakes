@@ -9,11 +9,6 @@ import {getProductsId, getProductsWeek, getProductsDay, getProductsMonth} from '
 import { getCountProductsOrders, getSumTotal, getOrders} from '../controllers/orders'
 import { get } from "firebase/database";
 import NavbarAdmin from "../components/navigation/NavbarAdmin";
-import { getAuth } from "firebase/auth";
-import appFirebase from "../credentials";
-import { doc, getFirestore } from "firebase/firestore";
-import { func } from "prop-types";
-import firebase from "firebase/compat/app";
 
 /**
  *  1. productos vendidos 300$ check
@@ -25,8 +20,6 @@ import firebase from "firebase/compat/app";
  *  ventas mensuales
  */
 
-const auth = getAuth(appFirebase);
-
 
 export default function Dashboard(){
   const [productspie, setProductsPie] = useState({
@@ -34,7 +27,7 @@ export default function Dashboard(){
     datasets: [{ data: [], backgroundColor: [] }]
   });
 
-
+  
   const [productsbarWeek, setProductsBarWeek] = useState([]);
   const [productsbarMonth, setProductsBarMonth] = useState([]);
   const [productsSales, setProductsSales] = useState(0);
@@ -47,6 +40,7 @@ export default function Dashboard(){
   getProductsMonth().then((data)=>{ setProductsBarMonth(data) })
   getCountProductsOrders().then((data)=>{ setProductsCount(data) })
   getSumTotal().then((data)=>{ setProductsSales(data);setProductsEarns(data*0.77) })
+ 
 
 },[]);
   return (

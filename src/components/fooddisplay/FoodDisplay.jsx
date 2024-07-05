@@ -5,24 +5,24 @@ import { MenuContext } from '../context/MenuContext';
 import FoodItem from '../fooditem/FoodItem';
 
 const FoodDisplay = ({ category }) => {
-  const { food_list, addToCart, removeFromCart } = useContext(MenuContext);
-
+  const { new_food, addToCart, removeFromCart } = useContext(MenuContext);
+  console.log("new food", new_food)
   return (
     <div className='food-display' id='food-display'>
       <h2>{category}</h2>
       <div className="food-display-list">
-        {food_list.map((item, index) => {
+        {new_food.map((item, index) => {
           if (category === "All" || category === item.category) {
             return (
               <FoodItem
                 key={index}
-                id={item._id}
-                name={item.name}
-                description={item.description}
-                price={item.price}
-                image={item.image}
-                onAddToCart={() => addToCart(item._id)}
-                onRemoveFromCart={() => removeFromCart(item._id)}
+                id={item.uid}
+                name={item.nombre}
+                description={item.descripcion}
+                price={item.precio}
+                image={item.imagen}
+                onAddToCart={() => addToCart(item.uid)}
+                onRemoveFromCart={() => removeFromCart(item.uid)}
               />
             );
           }
