@@ -20,8 +20,6 @@ function EditProfile() {
     const [errors, setErrors] = useState({});
     const [isDisabled,setDisabled] = useState(true); 
 
-
-
     useEffect(() => {
         const auth = getAuth(app_firebase);
         onAuthStateChanged(auth, (usuarioFirebase) => {
@@ -88,27 +86,27 @@ function EditProfile() {
                             <h3 className="font-bold"> Nombre </h3>
                             <div className="flex gap-2"> 
                             <input  
-                                id="Fname" className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
+                                id="Fname" disabled = {isDisabled} className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
                                     errors.fname ? "border-red-500" : "border-zinc-300"} dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white`}
-                                value={usuario? usuario.fname : ""} />{errors.fname && (<p className="text-red-500 text-xs mt-1">{errors.fname}</p>)}
+                                defaultValue={usuario? usuario.fname : ""} />{errors.fname && (<p className="text-red-500 text-xs mt-1">{errors.fname}</p>)}
                             </div>
                         </div>
                         <div className="flex flex-col font-montserrat w-full "> 
                             <h3 className="font-bold"> Apellido </h3>
                             <div className="flex gap-2"> 
                             <input  
-                                id="Lname" className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
+                                id="Lname"  disabled = {isDisabled} className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
                                     errors.lname ? "border-red-500" : "border-zinc-300"} dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white`}
-                                value={usuario? usuario.lname : ""} />{errors.lname && (<p className="text-red-500 text-xs mt-1">{errors.lname}</p>)}
+                                defaultValue={usuario? usuario.lname : ""} />{errors.lname && (<p className="text-red-500 text-xs mt-1">{errors.lname}</p>)}
                             </div>
                         </div>
                         <div className="flex flex-col font-montserrat w-full "> 
                             <h3 className="font-bold"> Correo </h3>
                             <div className="flex gap-2"> 
                             <input   
-                                id="email" className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
+                                id="email"  disabled = {isDisabled} className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
                                     errors.email ? "border-red-500" : "border-zinc-300"} dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white`}
-                                value={usuario? usuario.email : ""} />{errors.email && (<p className="text-red-500 text-xs mt-1">{errors.email}</p>)}
+                                defaultValue={usuario? usuario.email : ""} />{errors.email && (<p className="text-red-500 text-xs mt-1">{errors.email}</p>)}
                                 
                             </div>
                         </div>
