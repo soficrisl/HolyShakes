@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import './FoodDisplay.css';
 import PropTypes from 'prop-types';
-import { MenuContext } from '../context/Menucontext';
+import { MenuContext } from '../context/MenuContext';
 import FoodItem from '../fooditem-admin/FoodItem';
 import FoodItemVacio from '../fooditem-admin/FoodItemVacio';
 import edit from "../../assets/edit.png";

@@ -67,24 +67,28 @@ function Register() {
     }
 
     // Si no hay errores, procede a crear el usuario
-    const infoUsuario = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    ).then((usuarioFirebase) => {
-      return usuarioFirebase;
-    });
+    try {
+      const infoUsuario = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      ).then((usuarioFirebase) => {
+        return usuarioFirebase;
+      });
+      const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
+      setDoc(docuRef, {
+        email: email,
+        rol: rol,
+        fname: fname,
+        lname: lname,
+        phone: phone,
+      });
+      console.log(infoUsuario);
+    } catch (error) {
+      alert("Este Correo ya se encuentra registrado");
+    }
 
-    console.log(infoUsuario);
 
-    const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
-    setDoc(docuRef, {
-      email: email,
-      rol: rol,
-      fname: fname,
-      lname: lname,
-      phone: phone,
-    });
   };
 
   return (

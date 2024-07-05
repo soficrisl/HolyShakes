@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import add_icon from "../../assets/add_icon.png";
 import remove_icon from "../../assets/remove_icon.png";
 import add_icon_green from "../../assets/add_icon_green.png";
-import { MenuContext } from "../context/Menucontext";
+import { MenuContext } from "../context/MenuContext";
 import edit from "../../assets/edit.png";
 import X from "../../assets/X.png";
 

@@ -5,6 +5,8 @@ import FoodDisplayAdmin from "../components/fooddisplay-admin/FoodDisplay"
 import ExploreMenuAdmin from "../components/exploremenu-admin/ExploreMenu"
 // eslint-disable-next-line no-unused-vars
 import SearchBar from '../components/searchbar/SearchBar'
+import { useState } from "react"
+import NavbarAdmin from "../components/navigation/NavbarAdmin"
 
 function Menu() {
 
@@ -13,7 +15,7 @@ function Menu() {
   return (
     <>
       <div className=" w-full h-full bg-gradient-circle">
-        <Navbar/>
+        <NavbarAdmin/>
         <ExploreMenuAdmin category={category} setCategory={setCategory}/>
         <FoodDisplayAdmin category={category}/>
         <Footer/>

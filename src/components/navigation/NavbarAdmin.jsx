@@ -22,7 +22,7 @@ import {useRef} from "react";
 const auth = getAuth(appFirebase);
 
 
-const Navbar = () => {
+const NavbarAdmin = () => {
   const [isOpen, setOpen] = useState(false);
   const [usuario, setUsuario] = useState(null);
 
@@ -61,13 +61,13 @@ const Navbar = () => {
           <div className = {`nav-links md:static absolute bg-creamhs py-6 md:min-h-fit min-h-[60v] left-0 ${touched ? 'top-[9%] z-50': 'top-[-100%] z-0'}  md:w-auto w-full flex items-center px-51`}> 
             <ul className = "flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 ml-4"> 
               <li> 
-              <Link to="/" className="text-black dark:text-white hover:text-gray-500"> Inicio</Link>
+              <Link to="/dashboard" className="text-black dark:text-white hover:text-gray-500"> Dashboard</Link>
               </li>
               <li> 
-              <Link to="/menu" className="text-black dark:text-white hover:text-gray-500"> Menú</Link>
+              <Link to="/menuAdmin" className="text-black dark:text-white hover:text-gray-500"> Menú Admin</Link>
               </li>
               <li> 
-              <Link to="/aboutus" className="text-black dark:text-white  hover:text-gray-500">  Conócenos</Link>
+              <Link to="/aboutus" className="text-black dark:text-white  hover:text-gray-500">  Pedidos</Link>
               </li>
             </ul>
           </div>
@@ -98,7 +98,7 @@ const Navbar = () => {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
-                          to="/profile"
+                          href="/profile"
                           className={classNames(
                             active
                               ? "bg-gray-100 text-gray-900"
@@ -245,4 +245,4 @@ const Navbar = () => {
     */}
 
 
-export default Navbar;
+export default NavbarAdmin;

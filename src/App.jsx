@@ -12,6 +12,7 @@ import Perfil from './pages/Perfil';
 import Dashboard from './pages/Dashboard';
 import PendingOrders from './pages/PendingOrders';
 import CompletedOrders from './pages/CompletedOrders';
+import MenuAdmin from './pages/MenuAdmin';
 import appFirebase from './credentials';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import MenuContextProvider from './components/context/MenuContext';
@@ -39,6 +40,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home correoUsuario={usuario ? usuario.email : null} />} />
             <Route exact path="/Menu" element={<Menu />} />
+            <Route exact path="/menuAdmin" element={<MenuAdmin />} />
             <Route exact path="/login" element={usuario ? <Navigate to="/" replace /> : <Login />} />
             <Route exact path="/register" element={usuario ? <Navigate to="/" replace /> : <Register />} />
             <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace /> : <LoginAdmin />} />
