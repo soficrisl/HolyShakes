@@ -71,13 +71,13 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-6"> 
         {usuario ? (
-   
           <>
-            <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
-            <Menu
-              as="div"
-              className="hidden pt-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
-            >
+            <div className="flex gap-6"> 
+              <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
+              <Menu
+                as="div"
+                className="hidden pt-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
+              >
               <div>
                 <Menu.Button>
                   <UserCircleIcon className="h-8" />
@@ -97,7 +97,7 @@ const Navbar = () => {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
-                          href="/profile"
+                          to="/profile"
                           className={classNames(
                             active
                               ? "bg-gray-100 text-gray-900"
@@ -135,16 +135,19 @@ const Navbar = () => {
                 </Menu.Items>
               </Transition>
             </Menu>
+            </div>
+            
           </>
         ) : (
           <>
+          <div className="flex gap-4"> 
             <Link to="/login" className="text-black dark:text-white hover:text-gray-500 ">Iniciar Sesión</Link>
             <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
+          </div>
           </>
         )}
           </div>
         </nav>
-
       </header>
     
     </>

@@ -5,7 +5,6 @@ const UserProperties = (props) => {
     const place_holder = props.place_holder;
     const category = props.category; 
     const [edit, editable] = useState(false);
-    
     const editPropertie = () => {
         if (edit) {
             editable(false)
