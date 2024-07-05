@@ -25,6 +25,12 @@ const ProductModal = (props) => {
   const storage = getStorage(app_firebase);
   const { getProductosArray } = useContext(MenuContext);
   const [imageUrl, setImageUrl] = useState(null);
+  const { new_categories } = useContext(MenuContext);
+  const [categories, setCategories] = useState(new_categories);
+  useEffect(() => {
+    setCategories(null);
+    setCategories(new_categories);
+  }, [new_categories]);
 
   const handleOpenModal = (productId = null) => {
     setShowModal(true);
@@ -40,10 +46,10 @@ const ProductModal = (props) => {
     setProductPrice(parseInt(event.target.value));
   const handleProductImageChange = (event) => {
     handleUpload(event.target.files[0]);
-  }
+  };
   const handleProductCategoryChange = (event) =>
     setProductCategory(event.target.value);
-  
+
   async function getProductByUID(uid) {
     try {
       const productsRef = collection(firestore, "productos"); // Replace with your actual collection name
@@ -66,29 +72,29 @@ const ProductModal = (props) => {
       throw error; // Re-throw the error for proper handling
     }
   }
-  
+
   useEffect(() => {
     if (isEditing) {
       getProductByUID(productId);
     }
   }, [isEditing, productId]);
-  
+
   const handleDeleteProduct = async () => {
     try {
-      const productRef = doc(firestore, 'productos', productId);
+      const productRef = doc(firestore, "productos", productId);
       await deleteDoc(productRef); // Delete the product document
-      console.log('Product deleted successfully!');
+      console.log("Product deleted successfully!");
       (async () => {
         const productos = await getProductosArray();
         // Do something with the productos array
       })();
       handleCloseModal();
     } catch (error) {
-      console.error('Error deleting product:', error);
-    } 
+      console.error("Error deleting product:", error);
+    }
   };
 
-  async function handleUpload (image) {
+  async function handleUpload(image) {
     try {
       const imageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(imageRef, image);
@@ -99,7 +105,7 @@ const ProductModal = (props) => {
     } catch (error) {
       console.error(error); // Log the error for debugging
     }
-  };
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -109,10 +115,9 @@ const ProductModal = (props) => {
       descripcion: productDescription,
       precio: productPrice,
       categoria: productCategory,
-      imagen: imageUrl
+      imagen: imageUrl,
     };
 
-    
     const updateProduct = async (productData, uid) => {
       try {
         // Get a reference to the Firestore instance
@@ -284,12 +289,11 @@ const ProductModal = (props) => {
                 onChange={handleProductCategoryChange}
                 className="shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:w-full"
               >
-                <option value="">Seleccionar categoría</option>
-                <option value="Bebidas">Bebidas</option>
-                <option value="Postres">Postres</option>
-                <option value="moda">Moda</option>
-                <option value="deporte">Deporte</option>
-                <option value="otros">Otros</option>
+                {categories.map((item) => {
+                  return (
+                    <option value={item.name}>{item.name}</option>
+                  );
+                })}
               </select>
             </div>
 
@@ -318,12 +322,12 @@ const ProductModal = (props) => {
               </button>
               {isEditing ? (
                 <button
-                type="button"
-                onClick={handleDeleteProduct}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Eliminar
-              </button>
+                  type="button"
+                  onClick={handleDeleteProduct}
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Eliminar
+                </button>
               ) : (
                 <></>
               )}

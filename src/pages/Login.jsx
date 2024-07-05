@@ -9,16 +9,6 @@ import app_firebase from "../credentials"
 import { useEffect } from "react"
 
 function Login() {
-  const navigate = useNavigate();
-  const auth = getAuth(app_firebase);
-  useEffect(() => {
-    onAuthStateChanged(auth, (usuarioFirebase) => {
-      if (usuarioFirebase) {
-        navigate("/");
-      }
-    });
-  }, [auth])
-  
   
   return (
     <div className=" w-full h-full bg-gradient-circle ">

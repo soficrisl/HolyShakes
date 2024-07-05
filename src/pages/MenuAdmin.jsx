@@ -11,10 +11,10 @@ import NewFoodDisplay from '../components/fooddisplay-admin/NewFoodDisplay';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app_firebase from '../credentials';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 function MenuAdmin() {
   const [category, setCategory] = useState('All');
-
   return (
     <>
       <div className=" w-full h-full bg-gradient-circle">
