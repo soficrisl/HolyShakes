@@ -1,0 +1,111 @@
+.food-display {
+    margin-top: 30px;
+    margin-left: 200px;
+    margin-right: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .food-display h1 {
+    background-color: #f4d06f;
+    padding: 0;
+    border: none;
+    align-items: center; 
+    display: inline-block;
+  }
+
+  .food-display h2 {
+    font-size: max(2.5vw, 24px);
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #f4d06f;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    color: #fff;
+    transition: background-color 0.3s;
+    border-radius: 83px;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    margin: 0;
+    display: inline-block;
+  }
+
+  .food-display h3 {
+    font-size: max(1.5vw, 18px);
+    font-weight: 300;
+    padding: 0.5rem 1rem;
+    background-color: #9dd9d2;
+    border: none;
+    color: #fff;
+    transition: background-color 0.3s;
+    border-radius: 40px;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .food-display h3 {
+    font-size: max(1.5vw, 18px);
+    font-weight: 300;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    border: none;
+    color: #111111;
+    transition: background-color 0.3s;
+    border-radius: 40px;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+
+
+  .food-display category-heading {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    display: flex;
+    align-items: center; 
+  }
+
+  .category-image {
+    width: 65px; 
+    height: 65px; 
+  }
+  
+  .food-display-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    margin-top: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    .food-display {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  
+    .food-display h2 {
+      font-size: 24px;
+    }
+  
+    .food-display-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .food-display h2 {
+      font-size: 20px;
+    }
+  
+    .food-display-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
