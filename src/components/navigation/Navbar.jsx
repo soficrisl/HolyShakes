@@ -6,7 +6,7 @@ import usuario from "../../assets/usuario.png";
 import { Link } from "react-router-dom";
 import appFirebase from "../../credentials";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -18,7 +18,6 @@ import {
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import {useRef} from "react"; 
-
 const auth = getAuth(appFirebase);
 
 
@@ -26,13 +25,15 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [usuario, setUsuario] = useState(null);
 
-  onAuthStateChanged(auth, (usuarioFirebase) => {
-    if (usuarioFirebase) {
-      setUsuario(usuarioFirebase);
-    } else {
-      setUsuario(null);
-    }
-  });
+  useEffect( () => {
+    onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+        setUsuario(usuarioFirebase);
+      } else {
+        setUsuario(null);
+      }
+    })}, []);
+  
 
   const handleDropDown = () => {
     setOpen(!isOpen);
@@ -42,9 +43,6 @@ const Navbar = () => {
     return classes.filter(Boolean).join(" ");
   }
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   const [touched, navBarOpen] = useState(false); 
   const navBarOpening = () => {
@@ -67,23 +65,24 @@ const Navbar = () => {
               <Link to="/menu" className="text-black dark:text-white hover:text-gray-500"> Menú</Link>
               </li>
               <li> 
-              <Link to="/aboutus" className="text-black dark:text-white  hover:text-gray-500">  Conócenos</Link>
+              <Link to="/conocenos" className="text-black dark:text-white  hover:text-gray-500">  Conócenos</Link>
               </li>
             </ul>
           </div>
           <div className="flex items-center gap-6"> 
         {usuario ? (
           <>
-            <Menu
-              as="div"
-              className="hidden pt-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
-            >
+            <div className="flex gap-6"> 
+              <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
+              <Menu
+                as="div"
+                className="hidden pt-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
+              >
               <div>
                 <Menu.Button>
                   <UserCircleIcon className="h-8" />
                 </Menu.Button>
               </div>
-
               <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"
@@ -106,7 +105,7 @@ const Navbar = () => {
                             "block px-4 py-2 text-sm"
                           )}
                         >
-                          <div className="flex inline-flex gap-x-2">
+                          <div className="inline-flex gap-x-2">
                             <UserIcon className="h-5" /> Perfil
                           </div>
                         </Link>
@@ -117,6 +116,7 @@ const Navbar = () => {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
+                          to = "/"
                           onClick={() => signOut(auth)}
                           className={classNames(
                             active
@@ -125,7 +125,7 @@ const Navbar = () => {
                             "block px-4 py-2 text-sm"
                           )}
                         >
-                          <div className="flex inline-flex gap-x-2">
+                          <div className="inline-flex gap-x-2">
                             <ArrowRightStartOnRectangleIcon className="h-5" />{" "}
                             Cerrar Sesión
                           </div>
@@ -136,16 +136,19 @@ const Navbar = () => {
                 </Menu.Items>
               </Transition>
             </Menu>
+            </div>
+            
           </>
         ) : (
           <>
+          <div className="flex gap-4"> 
             <Link to="/login" className="text-black dark:text-white hover:text-gray-500 ">Iniciar Sesión</Link>
             <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
+          </div>
           </>
         )}
           </div>
         </nav>
-
       </header>
     
     </>

@@ -5,6 +5,8 @@ import Footer from '../components/navigation/Footer'
 import Navbar from '../components/navigation/Navbar'
 import React, { useEffect, useState } from "react";
 import { createComment } from '../controllers/feedback'
+import { getAuth } from 'firebase/auth';
+import {getUserByEmail} from '../controllers/users'
 
 export default function Feedback() {
     const [feedback, setFeedback] = useState({
@@ -13,12 +15,34 @@ export default function Feedback() {
         comentario: '',
         id_usuario: ''
       });
+      // console.log(feedback)
     /**
      * falta agregar el id del usuario hay un problema con el firebase
      */
-      const handleSubmit = async () => {
-        const comment = await createComment(feedback);
-        
+      const handleSubmit = () => {
+        try {
+          const auth = getAuth();
+          const user = auth.currentUser;
+          console.log('Current user:', user);
+
+
+
+          if (user && feedback.comentario !== '') {
+            console.log('Attempting to create comment...');
+            getUserByEmail(user.email).then((user) => {
+              setFeedback(prevFeedback => ({
+              ...prevFeedback,
+              id_usuario: user.id}));
+              createComment(feedback);});
+
+            
+            console.log('Comment created successfully.');
+          } else {
+            console.log('No user signed in or feedback is empty.');
+          }
+        } catch (error) {
+          console.error('Failed to submit feedback:', error);
+        }
       };
     
     const handleChange = (event) => {
@@ -50,7 +74,7 @@ export default function Feedback() {
             <OptionUserInput options={[
                 { value: 'Recomendación', label: 'Recomendación' },
                 { value: 'Reclamo', label: 'Reclamo' },
-            ]} labeltext="Tipo de Feedback" id="1" name="tipo" handleChange={handleChange} ></OptionUserInput>
+            ]} labeltext="Tipo de Feedback" id="2" name="tipo" handleChange={handleChange} ></OptionUserInput>
             <TextUserInput name="comentario" place_holder="Comentario" labeltext="Ingresa tu comentario" handleChange={handleChange} value={feedback.comentario}></TextUserInput>
             <Button text="Enviar" handleSubmit={handleSubmit}></Button>
         </main>
