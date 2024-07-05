@@ -21,7 +21,7 @@ export default function Footer(){
             </a>
           </div>
           <div className='flex flex-col justify-center items-center xl:space-y-5'>
-            <Link to="/Feedback"  className="underline">Feedback</Link>
+            <Link to="/feedback"  className="underline">Feedback</Link>
             <div className='flex flex-row items-center xl:space-x-4'>
               <img className='w-6 sm:w-8 md:w-10 lg:w-12 xl:w-14 2xl:w-16' src="./src/assets/telefonob.png" alt="" />
               <a href="https://api.whatsapp.com/send/?phone=4129223916&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">+58 4129223916</a>

@@ -63,6 +63,11 @@ export async function getProductsId(id) {
   function mergeMapsByKey(productsCounts, productsNames){
     const result = {};
     
+    productsNames.forEach(categoryObj => {
+      const categoryName = Object.values(categoryObj)[0]; // Assuming each object has only one key-value pair
+      result[categoryName] = 0;
+    });
+
     productsCounts.forEach(countObj => {
       Object.keys(countObj).forEach(productId => {
           // Find the product name using the product ID
@@ -79,17 +84,6 @@ export async function getProductsId(id) {
       });
   });
 
-    if (!result["Bebida"]) {
-      result["Bebida"] = 0;
-    }
-
-    if (!result["Salado"]) {
-      result["Salado"] = 0;
-    }
-
-    if (!result["Dulce"]) {
-      result["Dulce"] = 0;
-    }
     return result;
   }
 
@@ -118,9 +112,13 @@ export async function getProductsDay() {
         //importante
         const productsOrders = filteredOrders.map(order => order.productos).flat();
         
+
+        // console.log(productsOrders);
+        // console.log(products);
+
         const filteredProducts = mergeMapsByKey(productsOrders,products);
         
-        
+        console.log(filteredProducts);
         
         const labels = Object.keys(filteredProducts);
         const data = Object.values(filteredProducts);
@@ -168,9 +166,10 @@ export async function getProductsMonth() {
     const products = await getProductsCategory();
     const orders = await getOrders();
     let array_day = [];
-    //console.log(orders);
-    //console.log(products);
+    // console.log(orders);
+    // console.log(products);
     array_day = getProductsDate(6, 'month', "MMM", orders, products, array_day);
+    console.log(array_day);
     array_day = transformData(array_day,"month");
 
     return array_day;
@@ -182,11 +181,10 @@ function transformData(input,mode) {
     datasets: []
   };
 
-  const categories = {
-    Dulce: [],
-    Salado: [],
-    Bebida: []
-  };
+  const firstObject = input[0];
+
+// Step 2 & 3: Get the keys and filter out 'month'
+  const categories = transformDataToEmptyArrays(input);
 
   input.forEach(item => {
     data.labels.push(item[mode]);
@@ -209,6 +207,25 @@ function transformData(input,mode) {
 
   return data;
 }
+function transformDataToEmptyArrays(input) {
+  // Initialize the result object
+  const result = {};
+
+  // Check if input is not empty and has at least one object
+  if (input.length > 0) {
+    const firstObject = input[0];
+
+    // Extract keys excluding 'month'
+    const keys = Object.keys(firstObject).filter(key => key !== 'month' && key !== 'day');
+
+    // Iterate over keys and initialize each with an empty array in the result object
+    keys.forEach(key => {
+      result[key] = [];
+    });
+  }
+
+  return result;
+}
 
 function getProductsDate(index, unit, unit_format, orders, products, array_day){
     for (let i = 0; i < index; i++){
@@ -222,7 +239,7 @@ function getProductsDate(index, unit, unit_format, orders, products, array_day){
         if(filteredOrders != undefined){
           
           const productsOrders = filteredOrders.map(order => order.productos[0]);
-          
+        
           
           filteredProducts = mergeMapsByKey(productsOrders,products);
             
@@ -238,7 +255,7 @@ function getProductsDate(index, unit, unit_format, orders, products, array_day){
           }) */
         array_day.push(filteredProducts );
     }
-    
+    console.log(array_day);
     return array_day;
 }
 
