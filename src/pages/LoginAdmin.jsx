@@ -8,15 +8,7 @@ import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function Login() {
-  const navigate = useNavigate();
-  const auth = getAuth(app_firebase);
-  useEffect(() => {
-    onAuthStateChanged(auth, (usuarioFirebase) => {
-      if (usuarioFirebase) {
-        navigate("/");
-      }
-    });
-  }, [auth])
+
   return (
     <div className=" w-full h-full bg-gradient-circle ">
     <Navbar />

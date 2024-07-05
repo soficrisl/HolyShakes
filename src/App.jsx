@@ -19,37 +19,58 @@ import appFirebase from './credentials';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import MenuContextProvider from './components/context/MenuContext';
 import Conocenos from "./pages/Conocenos"; 
+import app_firebase from './credentials';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 function App() {
-  const [usuario, setUsuario] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   
+  const auth = getAuth(app_firebase);
+  const firestore = getFirestore(app_firebase);
+
   useEffect(() => {
-    const auth = getAuth(appFirebase);
-    onAuthStateChanged(auth, (usuarioFirebase) => {
-      if (usuarioFirebase) {
-        setUsuario(usuarioFirebase);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      if (user) {
+        checkUserRole(user.uid); // Check user role on login/state change
       } else {
-        setUsuario(null);
+        setIsAdmin(false);
       }
     });
-  }, [])
-  
+
+    return unsubscribe;
+  }, []);
+
+  const checkUserRole = async (uid) => {
+    const userDocRef = doc(firestore, 'usuarios', uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (userDocSnap.exists) {
+      const userRole = userDocSnap.data().rol;
+      setIsAdmin(userRole == "Admin"); // Check for specific roles or admin
+      console.log(isAdmin)
+      console.log("usuario", currentUser)
+    } else {
+      console.error('User document not found');
+    }
+  };
 
   return (
     <MenuContextProvider> {/* Envolver con MenuContextProvider */}
       <Router>
         <div className="App">
           <Routes>
-            <Route exact path="/" element={<Home correoUsuario={usuario ? usuario.email : null} />} />
+            <Route exact path="/" element={<Home correoUsuario={currentUser ? currentUser.email : null} />} />
             <Route exact path="/Menu" element={<Menu />} />
-            <Route exact path="/menuAdmin" element={<MenuAdmin />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/LoginAdmin" element={<LoginAdmin />} />
+            <Route exact path="/menuAdmin" element={isAdmin ? <MenuAdmin /> : <Navigate to="/" replace />} />
+            <Route exact path="/login" element={!currentUser ? (<Login />) : (<Navigate to="/" replace />)} />
+            <Route exact path="/register" element={!currentUser ? (<Register />) : (<Navigate to="/" replace />)} />
+            <Route exact path="/LoginAdmin" element={!currentUser ? (<LoginAdmin />) : (<Navigate to="/" replace />)} />
             <Route exact path="/profile" element={<UserProfile />} />
             <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/order" element={<OrderPage />} />
-            <Route exact path="/dashboard" element={<Dashboard/>}/>
+            <Route exact path="/dashboard" element={isAdmin ? <Dashboard /> : <Navigate to="/" replace />} />
             <Route exact path="/pendingorders" element={<PendingOrders/>}/>
             <Route exact path="/completedorders" element={<CompletedOrders/>}/>
             <Route exact path="/editProfile" element={<EditProfile/>}/>

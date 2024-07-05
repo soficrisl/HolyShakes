@@ -92,15 +92,7 @@ function Register() {
 
 
   };
-  const navigate = useNavigate();
-  const auth = getAuth(app_firebase);
-  useEffect(() => {
-    onAuthStateChanged(auth, (usuarioFirebase) => {
-      if (usuarioFirebase) {
-        navigate("/");
-      }
-    });
-  }, [auth])
+
   return (
     <>
       <Navbar />
