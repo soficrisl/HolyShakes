@@ -50,7 +50,7 @@ export default function Feedback() {
             <OptionUserInput options={[
                 { value: 'Recomendación', label: 'Recomendación' },
                 { value: 'Reclamo', label: 'Reclamo' },
-            ]} labeltext="Tipo de Feedback" id="1" name="tipo" handleChange={handleChange} ></OptionUserInput>
+            ]} labeltext="Tipo de Feedback" id="2" name="tipo" handleChange={handleChange} ></OptionUserInput>
             <TextUserInput name="comentario" place_holder="Comentario" labeltext="Ingresa tu comentario" handleChange={handleChange} value={feedback.comentario}></TextUserInput>
             <Button text="Enviar" handleSubmit={handleSubmit}></Button>
         </main>
