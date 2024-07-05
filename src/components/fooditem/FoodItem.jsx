@@ -16,7 +16,7 @@ const FoodItem = ({
   onAddToCart,
   onRemoveFromCart,
 }) => {
-  const { cartItems } = useContext(MenuContext);
+  const { cartItems,addToCart, removeFromCart } = useContext(MenuContext);
 
   return (
     <div className="food-item">
@@ -37,15 +37,14 @@ const FoodItem = ({
           </div>
         )}
       </div>
-      <div className="food-item-info">
-        <div className="food-item-name">
+        <div className="food-item-info">
+          <div className="food-item-name">
           <p>{name}</p>
-        </div>
-        <p className="food-item-description">{description} </p>
-        <p className="food-item-price">${price}</p>
+          </div>
+          <p className="food-item-description">{description} </p>
+          <p className="food-item-price">${price.toFixed(2)}</p>
       </div>
-      <p className="food-item-description">{description}</p>
-      <p className="food-item-price">${price.toFixed(2)}</p>
+
     </div>
   );
 };

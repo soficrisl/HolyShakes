@@ -9,7 +9,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import LoginAdmin from './pages/LoginAdmin';
 import OrderPage from './pages/OrderPage';
-import Perfil from './pages/Perfil';
+import UserProfile from './pages/userProfile';
+import EditProfile from './pages/editProfile';
 import Dashboard from './pages/Dashboard';
 import PendingOrders from './pages/PendingOrders';
 import CompletedOrders from './pages/CompletedOrders';
@@ -44,12 +45,13 @@ function App() {
             <Route exact path="/login" element={usuario ? <Navigate to="/" replace /> : <Login />} />
             <Route exact path="/register" element={usuario ? <Navigate to="/" replace /> : <Register />} />
             <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace /> : <LoginAdmin />} />
-            <Route exact path="/perfil" element={<Perfil />} />
+            <Route exact path="/profile" element={<UserProfile />} />
             <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/order" element={<OrderPage />} />
             <Route exact path="/dashboard" element={<Dashboard/>}/>
             <Route exact path="/pendingorders" element={<PendingOrders/>}/>
             <Route exact path="/completedorders" element={<CompletedOrders/>}/>
+            <Route exact path="/editProfile" element={<EditProfile/>}/>
           </Routes>
         </div>
       </Router>
