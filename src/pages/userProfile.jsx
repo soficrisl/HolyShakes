@@ -14,9 +14,10 @@ function UserProfile() {
     const [usuario, setUsuario] = useState(null);
     const [uid, setUid] = useState(null);
     const [photoURL, setPhotoURL] = useState (noProfile); 
-    const db = getFirestore(app_firebase);
+
 
     useEffect(() => {
+      const db = getFirestore(app_firebase);
       const auth = getAuth(app_firebase);
       const unsubscribe = onAuthStateChanged(auth, async (usuarioFirebase) => {
           if (usuarioFirebase) {
