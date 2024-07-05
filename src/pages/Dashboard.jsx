@@ -36,8 +36,8 @@ export default function Dashboard(){
 
   useEffect(() => {
   getProductsDay().then((data)=>{ setProductsPie(data) })
-  getProductsWeek().then((data)=>{ setProductsBarWeek(data),console.log(data)  });
-  getProductsMonth().then((data)=>{ setProductsBarMonth(data),console.log(data) })
+  getProductsWeek().then((data)=>{ setProductsBarWeek(data) });
+  getProductsMonth().then((data)=>{ setProductsBarMonth(data) })
   getCountProductsOrders().then((data)=>{ setProductsCount(data) })
   getSumTotal().then((data)=>{ setProductsSales(data);setProductsEarns(data*0.77) })
  

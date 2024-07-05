@@ -118,7 +118,7 @@ export async function getProductsDay() {
 
         const filteredProducts = mergeMapsByKey(productsOrders,products);
         
-        console.log(filteredProducts);
+        // console.log(filteredProducts);
         
         const labels = Object.keys(filteredProducts);
         const data = Object.values(filteredProducts);
@@ -169,7 +169,7 @@ export async function getProductsMonth() {
     // console.log(orders);
     // console.log(products);
     array_day = getProductsDate(6, 'month', "MMM", orders, products, array_day);
-    console.log(array_day);
+    
     array_day = transformData(array_day,"month");
 
     return array_day;
@@ -255,7 +255,7 @@ function getProductsDate(index, unit, unit_format, orders, products, array_day){
           }) */
         array_day.push(filteredProducts );
     }
-    console.log(array_day);
+    // console.log(array_day);
     return array_day;
 }
 
