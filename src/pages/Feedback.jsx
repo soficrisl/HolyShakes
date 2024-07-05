@@ -15,6 +15,7 @@ export default function Feedback() {
         comentario: '',
         id_usuario: ''
       });
+      // console.log(feedback)
     /**
      * falta agregar el id del usuario hay un problema con el firebase
      */
