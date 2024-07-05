@@ -7,6 +7,8 @@ export const MenuContext = createContext(null);
 const MenuContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [new_food, setNew_food] = useState([]); 
+  const [new_categories, setNew_categories] = useState([]); 
+
   
   const addToCart = (itemId) => {
     setCartItems((prev) => {
@@ -45,7 +47,7 @@ const MenuContextProvider = (props) => {
     console.log(cartItems);
   }, [cartItems]);
 
-  async function getProductosArray() {
+  const getProductosArray = async () => {
     const firestore = getFirestore(app_firebase);
 
     const productosRef = collection(firestore, "productos"); // Replace "productos" with your actual collection name
@@ -61,26 +63,50 @@ const MenuContextProvider = (props) => {
         productosArray.push(productoData);
       });
 
-      return productosArray;
+      setNew_food(productosArray);
     } catch (error) {
       console.error("Error fetching productos:", error);
       return []; // Handle errors gracefully, consider throwing an exception or returning an empty array
     }
   }
+  const getCategoriesArray = async () => {
+    const firestore = getFirestore(app_firebase);
+
+    const categoriasRef = collection(firestore, "categorias"); // Replace "categorias" with your actual collection name
+
+    try {
+      const categoriasQuery = query(categoriasRef); // Optional: You can add filtering or ordering clauses here
+      const querySnapshot = await getDocs(categoriasQuery);
+
+      const categoriasArray = [];
+      querySnapshot.forEach((doc) => {
+        const categoriaData = doc.data();
+        categoriaData.uid = doc.id; // Add the document ID (uid) as a property named "uid"
+        categoriasArray.push(categoriaData);
+      });
+      setNew_categories(categoriasArray);
+    } catch (error) {
+      console.error("Error fetching categorias:", error);
+      return []; // Handle errors gracefully, consider throwing an exception or returning an empty array
+    }
+  }
   useEffect(() => {
     // Example usage:
-    getProductosArray().then((productos) => {
-      setNew_food(productos);
-      // Use the productos array for further processing or display
+    getProductosArray().then(() => {
+    });
+    getCategoriesArray().then(() => {
     });
   }, []);
 
   const contextValue = {
     new_food,
+    new_categories,
     cartItems,
     setCartItems,
     addToCart,
     removeFromCart,
+    getProductosArray,
+    getCategoriesArray
   };
 
   return (

@@ -43,9 +43,9 @@ function App() {
             <Route exact path="/" element={<Home correoUsuario={usuario ? usuario.email : null} />} />
             <Route exact path="/Menu" element={<Menu />} />
             <Route exact path="/menuAdmin" element={<MenuAdmin />} />
-            <Route exact path="/login" element={usuario ? <Navigate to="/" replace /> : <Login />} />
-            <Route exact path="/register" element={usuario ? <Navigate to="/" replace /> : <Register />} />
-            <Route exact path="/LoginAdmin" element={usuario ? <Navigate to="/" replace /> : <LoginAdmin />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/LoginAdmin" element={<LoginAdmin />} />
             <Route exact path="/profile" element={<UserProfile />} />
             <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/order" element={<OrderPage />} />

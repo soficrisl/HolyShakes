@@ -2,10 +2,12 @@ import Navbar from "../components/navigation/Navbar";
 import Footer from "../components/navigation/Footer";
 import Google from "../assets/Google.webp";
 import appFirebase from "../credentials";
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import "../styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import app_firebase from "../credentials";
 
 const auth = getAuth(appFirebase);
 
@@ -90,7 +92,15 @@ function Register() {
 
 
   };
-
+  const navigate = useNavigate();
+  const auth = getAuth(app_firebase);
+  useEffect(() => {
+    onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+        navigate("/");
+      }
+    });
+  }, [auth])
   return (
     <>
       <Navbar />

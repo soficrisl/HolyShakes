@@ -1,18 +1,24 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './ExploreMenu.css'
 import PropTypes from 'prop-types'
-import {menu_list} from '../../assets/products'
+import { MenuContext } from '../context/MenuContext'
 
-const ExploreMenu = ({category, setCategory}) => {
+const ExploreMenuAdmin = ({category, setCategory}) => {
+  const { new_categories } = useContext(MenuContext);
+  const [categories, setCategories] = useState(new_categories);
+  useEffect(() => {
+    setCategories(new_categories);
+    console.log("categorias", categories);
+  }, [new_categories])
   return (
     <div className='explore-menu' id='explore-menu'>
     <h1>MENÚ ADMINISTRADOR</h1>
     <div className="explore-menu-list">
-        {menu_list.map((item, index)=>{
+        {categories.map((item)=>{
             return(
-              <div onClick={()=>setCategory(prev=>prev===item.menu_name?"All":item.menu_name)} key={index} className='explore-menu-list-item'>
-                <p>{item.menu_name}</p>
+              <div onClick={()=>setCategory(prev=>prev===item.nombre?"All":item.nombre)} key={item.uid} className='explore-menu-list-item'>
+                <p>{item.nombre}</p>
               </div>
             )
         })}
@@ -22,9 +28,9 @@ const ExploreMenu = ({category, setCategory}) => {
   )
 }
 
-ExploreMenu.propTypes = {
+ExploreMenuAdmin.propTypes = {
   category: PropTypes.string.isRequired,
   setCategory: PropTypes.func.isRequired,
 };
 
-export default ExploreMenu
+export default ExploreMenuAdmin
