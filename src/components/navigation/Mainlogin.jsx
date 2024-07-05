@@ -11,22 +11,26 @@ import {
   FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { useState } from "react";
 
 const auth = getAuth(appFirebase);
 
 const Mainlogin = () => {
-
   const googleAutentication = async () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider);
   };
-  
-  
+
   const funcAutentication = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    signInWithEmailAndPassword(auth, email, password);
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      console.log("Usuario autenticado:", user);
+    } catch (error) {
+      alert("Error al iniciar sesión, credenciales invalidas");
+    }
   };
   return (
     <>
@@ -86,9 +90,9 @@ const Mainlogin = () => {
           </div>
 
           <p className="text-center text-zinc-700 dark:text-zinc-300">
-          ¿Eres nuevo a Holly Shakes?
+            ¿Eres nuevo a Holly Shakes?
           </p>
-          
+
           <Link
             to="/register"
             className="w-full py-2 mt-2 border border-orange-500 text-orange-500 rounded-md text-center hover:bg-orange-100 dark:border-orange-400 dark:text-orange-400 dark:hover:bg-orange-600"

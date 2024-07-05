@@ -40,6 +40,11 @@ import product39 from './productimages/product39.jpg';
 import product40 from './productimages/product40.jpg';
 import product41 from './productimages/product41.jpg';
 
+import { collection, getDocs, getFirestore, query } from "firebase/firestore";
+import app_firebase from '../credentials';
+
+// Assuming you already have the firestore object imported from your Firebase configuration
+
 export const menu_list = [
   {
     menu_name: "Postres"

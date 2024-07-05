@@ -1,23 +1,19 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
-import './FoodDisplay.css';
-import PropTypes from 'prop-types';
-import { MenuContext } from '../context/Menucontext';
-import FoodItem from '../fooditem-admin/FoodItem';
-import FoodItemVacio from '../fooditem-admin/FoodItemVacio';
+import React, { useContext } from "react";
+import "./FoodDisplay.css";
+import { MenuContext } from "../context/MenuContext";
+import FoodItemVacio from "../fooditem-admin/FoodItemVacio";
 import edit from "../../assets/edit.png";
+import ProductModal from "../fooditem-admin/ProductModal";
+import CategoryModal from "../fooditem-admin/CategoryModal";
 
 const NewFoodDisplay = () => {
-  const { food_list } = useContext(MenuContext);
+  const { new_food } = useContext(MenuContext);
 
   return (
-    <div className='food-display' id='food-display'>
-      <h3>Añadir nueva categoría      +___</h3>
-      <h2 className="food-display category-heading">
-    +____ <h1> <img src={edit} alt="Edit Icon" className="category-image" /></h1>
-</h2>
-      <FoodItemVacio/>
-      <h3>Añadir nuevo producto +____</h3>
+    <div className="food-display" id="food-display">
+      <CategoryModal uid={null} ><h3>Añadir nueva categoría +</h3></CategoryModal>
+      <ProductModal uid={null} ><h3>Añadir Producto +</h3></ProductModal>
     </div>
   );
 };
