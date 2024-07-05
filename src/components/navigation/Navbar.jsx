@@ -65,7 +65,7 @@ const Navbar = () => {
               <Link to="/menu" className="text-black dark:text-white hover:text-gray-500"> Menú</Link>
               </li>
               <li> 
-              <Link to="/aboutus" className="text-black dark:text-white  hover:text-gray-500">  Conócenos</Link>
+              <Link to="/conocenos" className="text-black dark:text-white  hover:text-gray-500">  Conócenos</Link>
               </li>
             </ul>
           </div>
@@ -105,7 +105,7 @@ const Navbar = () => {
                             "block px-4 py-2 text-sm"
                           )}
                         >
-                          <div className="flex inline-flex gap-x-2">
+                          <div className="inline-flex gap-x-2">
                             <UserIcon className="h-5" /> Perfil
                           </div>
                         </Link>
@@ -116,6 +116,7 @@ const Navbar = () => {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
+                          to = "/"
                           onClick={() => signOut(auth)}
                           className={classNames(
                             active
@@ -124,7 +125,7 @@ const Navbar = () => {
                             "block px-4 py-2 text-sm"
                           )}
                         >
-                          <div className="flex inline-flex gap-x-2">
+                          <div className="inline-flex gap-x-2">
                             <ArrowRightStartOnRectangleIcon className="h-5" />{" "}
                             Cerrar Sesión
                           </div>

@@ -17,8 +17,7 @@ import CompletedOrders from './pages/CompletedOrders';
 import appFirebase from './credentials';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import MenuContextProvider from './components/context/MenuContext';
-
-
+import Conocenos from "./pages/Conocenos"; 
 
 function App() {
   const [usuario, setUsuario] = useState(null);
@@ -52,6 +51,7 @@ function App() {
             <Route exact path="/pendingorders" element={<PendingOrders/>}/>
             <Route exact path="/completedorders" element={<CompletedOrders/>}/>
             <Route exact path="/editProfile" element={<EditProfile/>}/>
+            <Route exact path="/conocenos" element={<Conocenos/>}/>
           </Routes>
         </div>
       </Router>
