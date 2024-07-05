@@ -6,7 +6,7 @@ import usuario from "../../assets/usuario.png";
 import { Link } from "react-router-dom";
 import appFirebase from "../../credentials";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -18,7 +18,6 @@ import {
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import {useRef} from "react"; 
-
 const auth = getAuth(appFirebase);
 
 
@@ -26,13 +25,15 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [usuario, setUsuario] = useState(null);
 
-  onAuthStateChanged(auth, (usuarioFirebase) => {
-    if (usuarioFirebase) {
-      setUsuario(usuarioFirebase);
-    } else {
-      setUsuario(null);
-    }
-  });
+  useEffect( () => {
+    onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+        setUsuario(usuarioFirebase);
+      } else {
+        setUsuario(null);
+      }
+    })}, []);
+  
 
   const handleDropDown = () => {
     setOpen(!isOpen);
@@ -42,9 +43,6 @@ const Navbar = () => {
     return classes.filter(Boolean).join(" ");
   }
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   const [touched, navBarOpen] = useState(false); 
   const navBarOpening = () => {
@@ -73,7 +71,9 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-6"> 
         {usuario ? (
+   
           <>
+            <button className="text-2xl md:hidden" onClick={navBarOpening}>  <ion-icon name="menu"></ion-icon> </button>
             <Menu
               as="div"
               className="hidden pt-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
@@ -83,7 +83,6 @@ const Navbar = () => {
                   <UserCircleIcon className="h-8" />
                 </Menu.Button>
               </div>
-
               <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"

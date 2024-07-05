@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
@@ -15,6 +16,7 @@ import CompletedOrders from './pages/CompletedOrders';
 import appFirebase from './credentials';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import MenuContextProvider from './components/context/MenuContext';
+
 
 
 function App() {
@@ -52,6 +54,7 @@ function App() {
         </div>
       </Router>
     </MenuContextProvider>
+
   );
 }
 
