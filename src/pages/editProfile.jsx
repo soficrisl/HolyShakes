@@ -19,19 +19,27 @@ function EditProfile() {
     const [photoURL, setPhotoURL] = useState (noProfile); 
     const [errors, setErrors] = useState({});
     const [isDisabled,setDisabled] = useState(true); 
-
-
-
+    const db = getFirestore(app_firebase);
     useEffect(() => {
+      
         const auth = getAuth(app_firebase);
-        onAuthStateChanged(auth, (usuarioFirebase) => {
-          if (usuarioFirebase) {
-            setUsuario(usuarioFirebase);
-          } else {
-            setUsuario(null);
-          }
+        const unsubscribe = onAuthStateChanged(auth, async (usuarioFirebase) => {
+            if (usuarioFirebase) {
+                const docRef = doc(db, 'users', usuarioFirebase.uid);
+                console.log(docRef)
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const userData = docSnap.data();
+                    setUsuario({ ...usuarioFirebase, ...userData });
+                } else {
+                    setUsuario(usuarioFirebase);
+                }
+            } else {
+                setUsuario(null);
+            }
         });
-      }, []);
+        return () => unsubscribe();
+    },);
 
 
       useEffect(() => {
@@ -45,14 +53,23 @@ function EditProfile() {
       }, [usuario]);
 
       function newPhoto(e) {
+        debugger 
+        console.log(e.target.files[0])
         if (e.target.files[0]) {
             setPhoto(e.target.files[0])
         }
       }
 
-      function handleClick () {
+      async function handleClick () {
         console.log("a.")
-        upload(photo, usuario, setLoading); 
+        setLoading(true); 
+        try {
+            const photo2 = await upload(photo, usuario); 
+            setPhotoURL(photo2)
+        } catch {
+            console.log("error")
+        } 
+        setLoading(false); 
       }
 
       
@@ -64,6 +81,41 @@ function EditProfile() {
         }
 
     } 
+
+    const funcCreate = async (e) => {
+        e.preventDefault();
+        const fname = e.target.Fname.value.trim();
+        const lname = e.target.Lname.value.trim();
+        const email = e.target.email.value.trim();
+    
+        const newErrors = {};
+    
+        const nameRegex = /^[A-Za-z]+$/;
+        const emailRegex = /^[^\s@]+@correo\.unimet\.edu\.ve$/; // Solo acepta correos de la unimet
+    
+    
+        // Validaciones de campos
+        if (!fname || !nameRegex.test(fname)) {
+          newErrors.fname = "Nombre inválido o vacío";
+        }
+    
+        if (!lname || !nameRegex.test(lname)) {
+          newErrors.lname = "Apellido inválido o vacío";
+        }
+    
+        if (!email || !emailRegex.test(email)) {
+          newErrors.email = "Correo electrónico debe ser @correo.unimet.edu.ve";
+        }
+    
+        if (Object.keys(newErrors).length > 0) {
+          setErrors(newErrors);
+          return;
+        }
+        await setDoc (doc(db, 'users', usuario.uid, ), {fname, lname, email})
+        setDisabled(true)
+    }
+
+    
 
     return (
     <>  
@@ -77,39 +129,38 @@ function EditProfile() {
                             <img src = {photoURL} className="h-full w-full object-cover border-2 rounded-full border-orangehs"></img>
                         </div>
                         <div className="flex justify-center gap-4"> 
-                            <button className = "text-3xl hover:text-4xl" > <ion-icon name="create-outline"></ion-icon></button>
-                            <button disabled={loading || !photo} className="w-1/4 py-2 self-center bg-aquahs text-white rounded-md shadow-sm hover:bg-orange-600 text-bold " onClick={handleClick} href = "/editProfile"> Cambiar </button>
+                            <button className = "text-3xl hover:text-4xl" onClick= {editPropertie} > <ion-icon name="create-outline"></ion-icon></button>
+                            <button disabled={loading} className="w-1/4 py-2 self-center bg-aquahs text-white rounded-md shadow-sm hover:bg-orange-600 text-bold " onClick={handleClick} href = "/editProfile"> Cambiar </button>
                         </div>
                         
-                        <input type="file" className="bg-white w-full p-2 lg:w-1/4 xl:w-1/3 md:w-1/3 sm:w-1/3 self-center " onClick={newPhoto}/>
+                        <input type="file" className="bg-white w-full p-2 lg:w-1/4 xl:w-1/3 md:w-1/3 sm:w-1/3 self-center " onChange={newPhoto}/>
                     </div>
-                    <form className="flex flex-col w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2 p-2 m-2 gap-4 self-center" > 
+                    <form className="flex flex-col w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2 p-2 m-2 gap-4 self-center" onSubmit={funcCreate} > 
                         <div className="flex flex-col font-montserrat w-full "> 
                             <h3 className="font-bold"> Nombre </h3>
                             <div className="flex gap-2"> 
                             <input  
-                                id="Fname" className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
+                                id="Fname" disabled = {isDisabled} className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
                                     errors.fname ? "border-red-500" : "border-zinc-300"} dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white`}
-                                value={usuario? usuario.fname : ""} />{errors.fname && (<p className="text-red-500 text-xs mt-1">{errors.fname}</p>)}
+                                defaultValue={usuario? usuario.fname : ""} />{errors.fname && (<p className="text-red-500 text-xs mt-1">{errors.fname}</p>)}
                             </div>
                         </div>
                         <div className="flex flex-col font-montserrat w-full "> 
                             <h3 className="font-bold"> Apellido </h3>
                             <div className="flex gap-2"> 
                             <input  
-                                id="Lname" className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
+                                id="Lname"  disabled = {isDisabled} className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
                                     errors.lname ? "border-red-500" : "border-zinc-300"} dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white`}
-                                value={usuario? usuario.lname : ""} />{errors.lname && (<p className="text-red-500 text-xs mt-1">{errors.lname}</p>)}
+                                defaultValue={usuario? usuario.lname : ""} />{errors.lname && (<p className="text-red-500 text-xs mt-1">{errors.lname}</p>)}
                             </div>
                         </div>
                         <div className="flex flex-col font-montserrat w-full "> 
                             <h3 className="font-bold"> Correo </h3>
                             <div className="flex gap-2"> 
                             <input   
-                                id="email" className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
+                                id="email"  disabled = {isDisabled} className={`block w-full p-2 border border-zinc-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white" ${
                                     errors.email ? "border-red-500" : "border-zinc-300"} dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white`}
-                                value={usuario? usuario.email : ""} />{errors.email && (<p className="text-red-500 text-xs mt-1">{errors.email}</p>)}
-                                
+                                defaultValue={usuario? usuario.email : ""} />{errors.email && (<p className="text-red-500 text-xs mt-1">{errors.email}</p>)}
                             </div>
                         </div>
                         <div> 

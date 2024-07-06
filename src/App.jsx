@@ -22,6 +22,7 @@ import Conocenos from "./pages/Conocenos";
 import app_firebase from './credentials';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
