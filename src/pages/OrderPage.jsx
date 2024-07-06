@@ -6,6 +6,8 @@ import '../components/OrderPage.css';
 import trashIcon from '../assets/trash-icon.png';
 import cartIcon from '../assets/cart-icon.png';
 import { MenuContext } from '../components/context/MenuContext';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import PayPalPayment from '../components/PayPalPayment';
 
 const OrderPage = () => {
   const { cartItems, new_food, removeFromCart, addToCart } = useContext(MenuContext);
@@ -95,7 +97,10 @@ const OrderPage = () => {
         <p>Subtotal: <span className="amount">${subtotal.toFixed(2)}</span></p>
         <p>Impuestos: <span className="amount">${taxes.toFixed(2)}</span></p>
         <p className="total-amount-line">Total a pagar: <span className="total-amount">${total.toFixed(2)}</span></p>
-        <button className="checkout-button" onClick={handleCheckout}>Pagar con PayPal</button>
+        <div className='p-2'>
+          <PayPalPayment/> 
+          
+        </div>
       </div>
       <button className="discard-button" onClick={handleDiscard}>Descartar</button>
       <Footer />
