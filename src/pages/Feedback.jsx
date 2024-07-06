@@ -3,8 +3,55 @@ import OptionUserInput from '../components/navigation/OptionUserInput'
 import Button from '../components/navigation/Button'
 import Footer from '../components/navigation/Footer'
 import Navbar from '../components/navigation/Navbar'
+import React, { useEffect, useState } from "react";
+import { createComment } from '../controllers/feedback'
+import { getAuth } from 'firebase/auth';
+import {getUserByEmail} from '../controllers/users'
 
 export default function Feedback() {
+    const [feedback, setFeedback] = useState({
+        puntuacion: '',
+        tipo: '',
+        comentario: '',
+        id_usuario: ''
+      });
+      // console.log(feedback)
+    /**
+     * falta agregar el id del usuario hay un problema con el firebase
+     */
+      const handleSubmit = () => {
+        try {
+          const auth = getAuth();
+          const user = auth.currentUser;
+          console.log('Current user:', user);
+
+
+
+          if (user && feedback.comentario !== '') {
+            console.log('Attempting to create comment...');
+            getUserByEmail(user.email).then((user) => {
+              setFeedback(prevFeedback => ({
+              ...prevFeedback,
+              id_usuario: user.id}));
+              createComment(feedback);});
+
+            
+            console.log('Comment created successfully.');
+          } else {
+            console.log('No user signed in or feedback is empty.');
+          }
+        } catch (error) {
+          console.error('Failed to submit feedback:', error);
+        }
+      };
+    
+    const handleChange = (event) => {
+        setFeedback((feedback) => ({
+          ...feedback,
+          [event.target.name]: event.target.value,
+        }));
+      };
+
     return(
         <>
         <Navbar></Navbar>
@@ -23,13 +70,13 @@ export default function Feedback() {
                 { value: '9', label: '9' },
                 { value: '10', label: '10' }
 
-            ]} labeltext="Puntua nuestra página web " id="puntuacion"></OptionUserInput>
+            ]} labeltext="Puntua nuestra página web " id="1" name="puntuacion" handleChange={handleChange}></OptionUserInput>
             <OptionUserInput options={[
-                { value: '1', label: 'Recomendación' },
-                { value: '2', label: 'Reclamo' },
-            ]} labeltext="Tipo de Feedback" id="tipo"></OptionUserInput>
-            <TextUserInput place_holder="Comentario" labeltext="Ingresa tu comentario" ></TextUserInput>
-            <Button text="Enviar"></Button>
+                { value: 'Recomendación', label: 'Recomendación' },
+                { value: 'Reclamo', label: 'Reclamo' },
+            ]} labeltext="Tipo de Feedback" id="2" name="tipo" handleChange={handleChange} ></OptionUserInput>
+            <TextUserInput name="comentario" place_holder="Comentario" labeltext="Ingresa tu comentario" handleChange={handleChange} value={feedback.comentario}></TextUserInput>
+            <Button text="Enviar" handleSubmit={handleSubmit}></Button>
         </main>
         <Footer></Footer>
         

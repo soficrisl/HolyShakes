@@ -2,10 +2,12 @@ import Navbar from "../components/navigation/Navbar";
 import Footer from "../components/navigation/Footer";
 import Google from "../assets/Google.webp";
 import appFirebase from "../credentials";
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import "../styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import app_firebase from "../credentials";
 
 const auth = getAuth(appFirebase);
 
@@ -67,24 +69,28 @@ function Register() {
     }
 
     // Si no hay errores, procede a crear el usuario
-    const infoUsuario = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    ).then((usuarioFirebase) => {
-      return usuarioFirebase;
-    });
+    try {
+      const infoUsuario = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      ).then((usuarioFirebase) => {
+        return usuarioFirebase;
+      });
+      const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
+      setDoc(docuRef, {
+        email: email,
+        rol: rol,
+        fname: fname,
+        lname: lname,
+        phone: phone,
+      });
+      console.log(infoUsuario);
+    } catch (error) {
+      alert("Este Correo ya se encuentra registrado");
+    }
 
-    console.log(infoUsuario);
 
-    const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
-    setDoc(docuRef, {
-      email: email,
-      rol: rol,
-      fname: fname,
-      lname: lname,
-      phone: phone,
-    });
   };
 
   return (
