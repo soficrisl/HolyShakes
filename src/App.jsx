@@ -24,6 +24,7 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
