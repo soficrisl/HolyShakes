@@ -21,11 +21,10 @@ function EditProfile() {
     const [isDisabled,setDisabled] = useState(true); 
     const db = getFirestore(app_firebase);
     useEffect(() => {
-      
         const auth = getAuth(app_firebase);
         const unsubscribe = onAuthStateChanged(auth, async (usuarioFirebase) => {
             if (usuarioFirebase) {
-                const docRef = doc(db, 'users', usuarioFirebase.uid);
+                const docRef = doc(db, 'usuarios', usuarioFirebase.uid);
                 console.log(docRef)
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
