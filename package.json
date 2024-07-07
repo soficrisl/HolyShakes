@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.1.4",
+    "@paypal/react-paypal-js": "^8.5.0",
     "chart.js": "^4.4.3",
     "dayjs": "^1.11.11",
     "firebase": "^10.12.3",

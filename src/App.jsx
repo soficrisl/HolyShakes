@@ -21,6 +21,8 @@ import MenuContextProvider from './components/context/MenuContext';
 import Conocenos from "./pages/Conocenos"; 
 import app_firebase from './credentials';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 
 
 function App() {
@@ -29,6 +31,12 @@ function App() {
   
   const auth = getAuth(app_firebase);
   const firestore = getFirestore(app_firebase);
+
+  const initialOptions = {
+    clientId: "AWQviUq0J_XMQHvb1s794P02FJ7JVbconqdyodWY-fNDsT20SRfs6MQFndXkijpl_GNRTVKJsxe0HLDv",
+    currency: "USD",
+    intent: "capture",
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -59,6 +67,7 @@ function App() {
 
   return (
     <MenuContextProvider> {/* Envolver con MenuContextProvider */}
+    <PayPalScriptProvider options={initialOptions}>
       <Router>
         <div className="App">
           <Routes>
@@ -79,6 +88,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      </PayPalScriptProvider>
     </MenuContextProvider>
 
   );
