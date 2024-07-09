@@ -81,8 +81,8 @@ function App() {
             <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/order" element={<OrderPage />} />
             <Route exact path="/dashboard" element={isAdmin ? <Dashboard /> : <Navigate to="/" replace />} />
-            <Route exact path="/pendingorders" element={<PendingOrders/>}/>
-            <Route exact path="/completedorders" element={<CompletedOrders/>}/>
+            <Route exact path="/pendingorders" element={isAdmin ? <PendingOrders /> : <Navigate to="/" replace />}/>
+            <Route exact path="/completedorders" element={isAdmin ? <CompletedOrders /> : <Navigate to="/" replace />}/>
             <Route exact path="/editProfile" element={<EditProfile/>}/>
             <Route exact path="/conocenos" element={<Conocenos/>}/>
           </Routes>
