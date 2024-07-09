@@ -12,8 +12,8 @@ const ExploreMenu = ({category, setCategory}) => {
     <div className="explore-menu-list">
         {new_categories.map((item)=>{
             return(
-              <div onClick={()=>setCategory(prev=>prev===item.nombre?"All":item.nombre)} key={item.uid} className='explore-menu-list-item'>
-                <p>{item.nombre}</p>
+              <div onClick={()=>setCategory(prev=>prev===item.name?"All":item.name)} key={item.uid} className='explore-menu-list-item'>
+                <p>{item.name}</p>
               </div>
             )
         })}
