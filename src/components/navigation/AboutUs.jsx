@@ -4,8 +4,16 @@ import logouni from '../../assets/logouni.png';
 import mail from '../../assets/mail.png';
 import flechas from '../../assets/flechas.png';
 import phone from '../../assets/phone.png';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const AboutUs = () => {
+  const navigate = useNavigate();
+
+const Feedbackkk = () => {
+  navigate('/Feedback');
+};
   return (
     <div className="bg-creamhs w-full dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-montserrat">
       <section className="bg-orange-400 text-white py-8">
@@ -81,6 +89,7 @@ const AboutUs = () => {
           />
           <button
             className="bg-orange-400 text-white py-4 px-8 rounded-full mt-4 text-2xl font-semibold"
+            onClick ={Feedbackkk}
           >
             FEEDBACK
           </button>
