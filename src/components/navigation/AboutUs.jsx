@@ -26,7 +26,7 @@ const AboutUs = () => {
             className="mb-4 md:mb-0 md:mr-4 w-32 md:w-48"
           />
           <p className="text-base text-left max-w-lg md:text-center md:text-justify">
-            En la Universidad Metropolitana, nació la idea de Holly Shakes, un stand dedicado a ofrecer deliciosos desayunos y almuerzos, como una respuesta a la necesidad de los estudiantes y el personal de contar con opciones alimenticias sabrosas y saludables. Inspirados por el dinamismo y la creatividad del entorno universitario, decidimos fusionar la tradición culinaria con un toque moderno y fresco. Bajo nuestro lema, "Sabores divinamente irresistibles a tu alcance," Holly Shakes se ha convertido en un punto de encuentro donde la comunidad universitaria puede disfrutar de comidas nutritivas y momentos de relajación en medio de sus ajetreadas agendas.
+            En la Universidad Metropolitana, nació la idea de Holly Shakes, un stand dedicado a ofrecer deliciosos desayunos y almuerzos, como una respuesta a la necesidad de los estudiantes y el personal de contar con opciones alimenticias sabrosas y saludables. Inspirados por el dinamismo y la creatividad del entorno universitario, decidimos fusionar la tradición culinaria con un toque moderno y fresco. Bajo nuestro lema, Sabores divinamente irresistibles a tu alcance, Holly Shakes se ha convertido en un punto de encuentro donde la comunidad universitaria puede disfrutar de comidas nutritivas y momentos de relajación en medio de sus ajetreadas agendas.
           </p>
         </div>
       </section>
@@ -35,7 +35,7 @@ const AboutUs = () => {
           <img
             src={Campus}
             alt="Location Image"
-            className="w-full md:w-1/2 mb-4 md:mb-0 md:mr-4"
+            className="bg-9DD9D2 w-full dark:bg-zinc-700 py-8"
           />
           <div className="text-center md:text-left md:w-1/2">
             <h2 className="text-orange-400 text-4xl font-bold mb-2 text-center">¿Dónde estamos ubicados?</h2>
