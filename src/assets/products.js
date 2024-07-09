@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import product1 from './productimages/pbmilkshake.png';
 import product2 from './productimages/product2.jpg';
 import product3 from './productimages/product3.jpg';
