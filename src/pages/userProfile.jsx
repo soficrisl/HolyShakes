@@ -21,7 +21,7 @@ function UserProfile() {
       const auth = getAuth(app_firebase);
       const unsubscribe = onAuthStateChanged(auth, async (usuarioFirebase) => {
           if (usuarioFirebase) {
-              const docRef = doc(db, 'users', usuarioFirebase.uid);
+              const docRef = doc(db, 'usuarios', usuarioFirebase.uid);
               const docSnap = await getDoc(docRef);
               if (docSnap.exists()) {
                   const userData = docSnap.data();
