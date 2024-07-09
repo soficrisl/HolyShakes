@@ -9,6 +9,7 @@ import cake from "../assets/carrousel_images/choc_cake.png" ;
 import pernil from "../assets/carrousel_images/sandwich.png" ;
 import waffles from "../assets/carrousel_images/waffles.png";
 import empanadas from "../assets/carrousel_images/empanaditas.png"
+import { useNavigate } from 'react-router-dom';
 
 const Carrousel = () => {
   const data = [
@@ -72,6 +73,12 @@ const Carrousel = () => {
             }
         }
     ]
+  };
+
+  const navigate = useNavigate();
+
+  const Menuu = () => {
+    navigate('/menu');
   };
 
   // // Flecha para seguir hacia la derecha en el carrusel
@@ -154,7 +161,7 @@ const Carrousel = () => {
       </div>
       <button 
       className='mt-20 mb-6  pt-2 pb-2 pl-4 pr-4 border-4 border-orangehs self-center rounded-3xl text-orangehs uppercase font-bol hover:bg-orange-50'
-      style= {{fontFamily: "'Open Sans' , sans-serif", fontWeight: 'bold'}}> Ver todo el Menú</button>
+      onClick={Menuu}style= {{fontFamily: "'Open Sans' , sans-serif", fontWeight: 'bold'}}> Ver todo el Menú</button>
     </div>
 
 
