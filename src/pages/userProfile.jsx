@@ -66,7 +66,6 @@ function UserProfile() {
                             <button className="w-full py-2 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-600 text-bold">
                                 Editar 
                             </button> </Link> 
-                            <button className="w-full py-2 bg-aquahs text-black rounded-md shadow-sm hover:bg-aqua-darker text-bold underline"> Ver historial de pedidos </button>
                     </div> 
                 </div>
             </div>
