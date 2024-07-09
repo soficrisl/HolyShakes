@@ -67,7 +67,7 @@ const NavbarAdmin = () => {
               <Link to="/menuAdmin" className="text-black dark:text-white hover:text-gray-500"> Menú Admin</Link>
               </li>
               <li> 
-              <Link to="/aboutus" className="text-black dark:text-white  hover:text-gray-500">  Pedidos</Link>
+              <Link to="/pendingorders" className="text-black dark:text-white  hover:text-gray-500">  Pedidos</Link>
               </li>
             </ul>
           </div>
